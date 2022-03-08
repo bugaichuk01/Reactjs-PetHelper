@@ -1,53 +1,43 @@
 import React, {useState} from 'react';
-import styles from './Login.module.css'
+import styles from './Register.module.css'
 import {useNavigate} from "react-router-dom"
-import axios from "axios";
+import API from "../../utils/API";
 
-function Login() {
+function Register() {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         username: '',
+        email: '',
         password: '',
     });
-    const {username, password} = formData;
+    const {username, email, password} = formData;
 
     const onChange = (event) => setFormData({...formData, [event.target.name]: event.target.value});
 
-    const onSubmit = async (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
-        try {
-            const response = await axios.post('/api/auth/login', {
-                "username": username,
-                "password": password
-            }).then(response => {
-                if (response.data.Token) {
-                    localStorage.setItem("user", JSON.stringify(response.data));
-                }
-                return response.data;
-            });
-            console.log(response);
-        } catch (error) {
-            console.log(error)
-        }
+        API.register(username, email, password);
     }
 
     return (
         <div>
-            <div className={styles.login__form_wrapper}>
-                <h1 className={styles.header__text}>Log in to PetHelper</h1>
+            <div className={styles.register__form_wrapper}>
+                <h1 className={styles.header__text}>Sign up</h1>
                 <p className={styles.header__desc}>Welcome back! login with your data that you entered during
                     registration</p>
                 <form className={styles.login__form} onSubmit={onSubmit}>
                     <input className={styles.input} type="text" name="username" placeholder="Username" required
                            onChange={onChange}/>
+                    <input className={styles.input} type="email" name="email" placeholder="Email" required
+                           onChange={onChange}/>
                     <input className={styles.input} type="password" name="password" placeholder="Password" required
                            onChange={onChange}/>
-                    <button className={styles.btn__login} type='submit'>Login</button>
+                    <button className={styles.btn__register} type='submit'>Register</button>
                 </form>
-                <p>Don't have an account? <a onClick={() => navigate('/register')} className={styles.register}>Register</a></p>
+                <p>Already a member? <a onClick={() => navigate('/login')} className={styles.login}>Log in</a></p>
             </div>
         </div>
     );
 }
 
-export default Login;
+export default Register;
