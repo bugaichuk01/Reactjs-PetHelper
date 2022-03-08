@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import styles from './Register.module.css'
 import {useNavigate} from "react-router-dom"
 import API from "../../utils/API";
+import UiInput from "../../components/UI/UIInput/UIInput";
 
 function Register() {
     const navigate = useNavigate();
@@ -26,12 +27,9 @@ function Register() {
                 <p className={styles.header__desc}>Welcome back! login with your data that you entered during
                     registration</p>
                 <form className={styles.login__form} onSubmit={onSubmit}>
-                    <input className={styles.input} type="text" name="username" placeholder="Username" required
-                           onChange={onChange}/>
-                    <input className={styles.input} type="email" name="email" placeholder="Email" required
-                           onChange={onChange}/>
-                    <input className={styles.input} type="password" name="password" placeholder="Password" required
-                           onChange={onChange}/>
+                    <UiInput type='text' name='username' placeholder='Username' onChange={onChange} />
+                    <UiInput type='email' name='email' placeholder='Email' onChange={onChange} />
+                    <UiInput type='password' name='password' placeholder='Password' onChange={onChange} />
                     <button className={styles.btn__register} type='submit'>Register</button>
                 </form>
                 <p>Already a member? <a onClick={() => navigate('/login')} className={styles.login}>Log in</a></p>
