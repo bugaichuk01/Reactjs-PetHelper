@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import styles from './Login.module.css'
 import {useNavigate} from "react-router-dom"
 import API from "../../utils/API";
+import UiInput from "../../components/UI/UIInput/UIInput";
 
 function Login() {
     const navigate = useNavigate();
@@ -25,14 +26,12 @@ function Login() {
                 <p className={styles.header__desc}>Welcome back! login with your data that you entered during
                     registration</p>
                 <form className={styles.login__form} onSubmit={onSubmit}>
-                    <input className={styles.input} type="text" name="username" placeholder="Username" required
-                           onChange={onChange}/>
-                    <input className={styles.input} type="password" name="password" placeholder="Password" required
-                           onChange={onChange}/>
-                    <p className={styles.recovery}>Recovery Password</p>
+                    <UiInput type='text' name='username' placeholder='Username' onChange={onChange} />
+                    <UiInput type='password' name='password' placeholder='Password' onChange={onChange} />
+                    <span className={styles.recovery}>Recovery Password</span>
                     <button className={styles.btn__login} type='submit'>Login</button>
                 </form>
-                <p>Don't have an account? <a onClick={() => navigate('/register')} className={styles.register}>Register</a></p>
+                <p>Don't have an account? <span onClick={() => navigate('/register')} className={styles.register}>Register</span></p>
             </div>
         </div>
     );
