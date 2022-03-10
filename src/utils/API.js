@@ -37,6 +37,10 @@ export default {
 
     getByUsername: async (username) => {
         return await axios.get(`api/user/getByUsername?username=${username}`, {headers: authHeader()});
+    },
+
+    getAllUsers: async () => {
+        return await axios.get(`api/user/getAll`, {headers: authHeader()});
     }
 
 }
