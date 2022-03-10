@@ -3,9 +3,11 @@ import styles from './Login.module.css'
 import {useNavigate} from "react-router-dom"
 import API from "../../utils/API";
 import UiInput from "../../components/UI/UIInput/UIInput";
+import {useDispatch} from "react-redux";
 
 function Login() {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [formData, setFormData] = useState({
         username: '',
         password: '',
@@ -16,7 +18,7 @@ function Login() {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        API.login(username, password);
+        API.login(username, password, dispatch);
     }
 
     return (
