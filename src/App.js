@@ -12,7 +12,7 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/login" element={user ? <Navigate replace to='/'/> : <Login/>}/>
-                <Route path="/register" element={<Register/>}/>
+                <Route path="/register" element={user ? <Navigate replace to='/'/> : <Register/>}/>
                 <Route path="/" element={user ? <Home currentUser={user}/> : <Login/>}/>
             </Routes>
         </Router>
