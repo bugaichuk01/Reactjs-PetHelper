@@ -11,17 +11,17 @@ function Register() {
     const [formData, setFormData] = useState({
         username: '',
         email: '',
+        mobileNumber: '',
         password: '',
     });
-    const {username, email, password} = formData;
-    console.log(formData)
+    const {username, email, mobileNumber, password} = formData;
 
     const onChange = (event) => setFormData({...formData, [event.target.name]: event.target.value});
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
-        API.register(username, email, password);
-        API.login(username, password, dispatch);
+        await API.register(username, email, mobileNumber, password);
+        await API.login(username, password, dispatch);
     }
 
     return (
@@ -33,6 +33,7 @@ function Register() {
                 <form className={styles.login__form} onSubmit={onSubmit}>
                     <UiInput type='text' name='username' placeholder='Username' onChange={onChange} />
                     <UiInput type='email' name='email' placeholder='Email' onChange={onChange} />
+                    <UiInput type='text' name='mobileNumber' placeholder='Phone number' onChange={onChange} />
                     <UiInput type='password' name='password' placeholder='Password' onChange={onChange} />
                     <button className={styles.btn__register} type='submit'>Register</button>
                 </form>
