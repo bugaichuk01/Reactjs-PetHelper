@@ -3,8 +3,10 @@ import styles from './Register.module.css'
 import {useNavigate} from "react-router-dom"
 import API from "../../utils/API";
 import UiInput from "../../components/UI/UIInput/UIInput";
+import {useDispatch} from "react-redux";
 
 function Register() {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         username: '',
@@ -12,12 +14,14 @@ function Register() {
         password: '',
     });
     const {username, email, password} = formData;
+    console.log(formData)
 
     const onChange = (event) => setFormData({...formData, [event.target.name]: event.target.value});
 
     const onSubmit = (e) => {
         e.preventDefault();
         API.register(username, email, password);
+        API.login(username, password, dispatch);
     }
 
     return (
@@ -32,7 +36,7 @@ function Register() {
                     <UiInput type='password' name='password' placeholder='Password' onChange={onChange} />
                     <button className={styles.btn__register} type='submit'>Register</button>
                 </form>
-                <p>Already a member? <a onClick={() => navigate('/login')} className={styles.login}>Log in</a></p>
+                <p>Already a member? <span onClick={() => navigate('/login')} className={styles.login}>Log in</span></p>
             </div>
         </div>
     );
