@@ -1,14 +1,10 @@
-import React from 'react';
-import API from "../../utils/API";
+import Header from "../../components/header/Header";
 
-function Home({currentUser}) {
+function Home() {
+
     return (
         <div>
-            <p>mail - {currentUser.email}</p>
-            <p>username - {currentUser.username}</p>
-            <p>status - {currentUser.status}</p>
-            <p>role - {currentUser.role}</p>
-            <button onClick={() => API.getAllUsers().then(res => console.log(res.data))}>Get Users</button>
+            <Header />
         </div>
     );
 }
