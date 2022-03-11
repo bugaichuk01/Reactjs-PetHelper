@@ -23,11 +23,12 @@ export default {
         }
     },
 
-    register: async (username, email, password) => {
+    register: async (username, email, mobileNumber, password) => {
         try {
             await axios.post('/api/user/add', {
                 "username": username,
                 "email": email,
+                "mobileNumber": mobileNumber,
                 "password": password
             });
         } catch (error) {
@@ -41,6 +42,10 @@ export default {
 
     getAllUsers: async () => {
         return await axios.get(`api/user/getAll`, {headers: authHeader()});
+    },
+
+    getAllPosts: async () => {
+        return await axios.get(`api/animal/getAll` );
     }
 
 }
