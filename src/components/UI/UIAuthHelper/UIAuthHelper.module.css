@@ -1,0 +1,23 @@
+.btn {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    width: 100%;
+    padding: 17px;
+    /* Neutral/Light */
+    border: 2px solid #EBF0FF;
+    /* Button Shadow */
+    border-radius: 5px;
+    /* Button Text */
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 180%;
+    text-align: center;
+    letter-spacing: 0.5px;
+    color: #9098B1;
+}
+
+.btn__text {
+    padding-left: 20%;
+}

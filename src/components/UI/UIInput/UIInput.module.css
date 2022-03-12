@@ -1,13 +1,32 @@
-.input {
-    font-size: 15px;
-    margin: 10px;
-    padding: 15px;
+.input__wrapper {
+    display: flex;
+    align-items: center;
     width: 100%;
-    box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.05);
-    border: none;
-    border-radius: 10px;
+}
+.input {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 180%;
+    letter-spacing: 0.5px;
+    color: #9098B1;
+    padding: 15px 15px 15px 50px;
+    border: 2px solid #EBF0FF;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.icon {
+    position: absolute;
+    margin-left: 15px;
 }
 
 .input:focus {
     outline: none;
+    border: 2px solid #40BFFF;
+    border-radius: 5px;
+}
+
+input::placeholder {
+    font-weight: 400;
 }

@@ -1,10 +1,14 @@
 import React from 'react';
 import styles from "./UIInput.module.css";
+import cn from "classnames";
 
-function UiInput({type, name, placeholder, onChange}) {
+function UiInput({type, name, placeholder, onChange, src, classes}) {
     return (
-        <input className={styles.input} type={type} name={name} placeholder={placeholder} required
-               onChange={onChange}/>
+        <div className={cn(styles.input__wrapper, classes)}>
+            <img className={styles.icon} src={src} alt=""/>
+            <input className={styles.input} type={type} name={name} placeholder={placeholder} required
+                   onChange={onChange}/>
+        </div>
     );
 }
 
