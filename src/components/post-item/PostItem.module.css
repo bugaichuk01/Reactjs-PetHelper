@@ -1,0 +1,45 @@
+.list__item {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    cursor: pointer;
+    width: 40%;
+    margin: 10px;
+    border: 2px solid #EBF0FF;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 16px;
+}
+
+.list__img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.list__name {
+    margin-top: 5px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 150%;
+    letter-spacing: 0.5px;
+    color: #223263;
+}
+
+.list__status {
+    margin-top: 5px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 150%;
+    letter-spacing: 0.5px;
+    padding-left: 10%;
+}
+
+.list__status_found {
+    color: #40BFFF;
+}
+
+.list__status_lost {
+    color: #FB7181;
+}
