@@ -1,0 +1,19 @@
+.btn {
+    width: 100%;
+    border: none;
+    padding: 17px;
+    /* Primary/Blue */
+    background: #40BFFF;
+    /* Button Shadow */
+    box-shadow: 0 10px 30px rgba(64, 191, 255, 0.24);
+    border-radius: 5px;
+    /* Button Text */
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 180%;
+    text-align: center;
+    letter-spacing: 0.5px;
+    /* Background/White */
+    color: #FFFFFF;
+}
