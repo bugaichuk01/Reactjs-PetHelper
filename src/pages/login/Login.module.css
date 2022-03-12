@@ -1,5 +1,9 @@
+.login__wrapper {
+    width: 90%;
+    margin: 0 auto;
+}
 .image {
-    width: 40%;
+    width: 45%;
     border-radius: 25px;
     margin-top: 50px;
     margin-bottom: 20px;
@@ -33,30 +37,33 @@
 }
 
 .login__form {
-    width: 90%;
+    width: 100%;
     align-items: center;
     display: flex;
     flex-direction: column;
 }
 
-.btn__login {
-    width: 100%;
-    border: none;
-    padding: 17px;
-    /* Primary/Blue */
-    background: #40BFFF;
-    /* Button Shadow */
-    box-shadow: 0 10px 30px rgba(64, 191, 255, 0.24);
-    border-radius: 5px;
-    /* Button Text */
+.login__input {
+    margin-bottom: 10px;
+}
+
+.error__text {
     font-style: normal;
     font-weight: 700;
-    font-size: 14px;
-    line-height: 180%;
-    text-align: center;
+    font-size: 12px;
+    line-height: 150%;
+    align-self: flex-start;
     letter-spacing: 0.5px;
-    /* Background/White */
-    color: #FFFFFF;
+    color: #FB7181;
+    padding-left: 2px;
+    margin-bottom: 10px;
+}
+
+.login__helper {
+    margin-bottom: 15px;
+}
+
+.btn__login {
     margin-top: 5px;
 }
 
@@ -72,16 +79,8 @@
     color: #40BFFF;
 }
 
-.recovery {
-    align-self: end;
-    color: #817878;
-    font-weight: 600;
-    margin-bottom: 20px;
-    font-size: 12px;
-}
-
 .login__cross {
-    width: 90%;
+    width: 100%;
     display: flex;
     align-items: center;
 }
