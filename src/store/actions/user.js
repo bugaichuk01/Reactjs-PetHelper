@@ -1,5 +1,5 @@
 import {LOGIN_FAILURE, LOGIN_START, LOGIN_SUCCESS} from "../constants/actionTypes";
-import AuthService from "../../services/auth.service";
+import AuthService from "../../_services/auth.service";
 
 export const login = (username, password) => (dispatch) => {
     dispatch({
@@ -23,4 +23,11 @@ export const login = (username, password) => (dispatch) => {
             return Promise.reject();
         }
     );
+};
+
+export const register = (username, email, password) => (dispatch) => {
+    return AuthService.register(username, email, password).then(
+        () => {
+            dispatch(login(username, password));
+        });
 };
