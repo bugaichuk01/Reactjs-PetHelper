@@ -1,7 +1,7 @@
-import './main.css';
-import Login from "./pages/login/Login";
+import './style.global.css';
+import Login from "./pages/auth/Login";
 import {BrowserRouter as Router, Navigate, Route, Routes} from "react-router-dom";
-import Register from "./pages/register/Register";
+import Register from "./pages/auth/Register";
 import Home from "./pages/home/Home";
 import {useSelector} from "react-redux";
 import Report from "./pages/report/Report";

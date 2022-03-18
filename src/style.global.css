@@ -1,0 +1,36 @@
+* {
+    font-family: 'Poppins', sans-serif !important;
+}
+
+/* TextField */
+.MuiFormControl-root {
+    margin-top: 10px !important;
+}
+
+.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+    border-color: #EBF0FF !important;
+}
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: #40BFFF !important;
+}
+
+.MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
+    border-color: #FB7181 !important;
+}
+
+.MuiInputBase-input {
+    color: #9098B1 !important;
+}
+
+.MuiFormLabel-root {
+    color: #9098B1 !important;
+}
+
+.MuiFormLabel-root.Mui-focused {
+    color: #40BFFF !important;
+}
+
+.MuiFormLabel-root.Mui-error {
+    color: #FB7181 !important;
+}
