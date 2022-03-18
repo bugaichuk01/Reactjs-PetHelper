@@ -1,6 +1,14 @@
 .list {
-    display: flex;
-    flex-wrap: wrap;
     padding-inline-start: 0;
-    justify-content: center;
+}
+
+.list__text {
+    align-self: start;
+    font-style: normal;
+    font-weight: 700;
+    margin: 10px;
+    font-size: 18px;
+    line-height: 150%;
+    letter-spacing: 0.5px;
+    color: #223263;
 }
