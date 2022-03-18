@@ -15,6 +15,7 @@ function PostItem({post}) {
                         ? cn(styles.list__status, styles.list__status_lost)
                         : cn(styles.list__status, styles.list__status_found)}>{post.status}</span>
             </div>
+            <span className={styles.list__name}>{post.breed}</span>
             <span className={styles.list__name}>{moment(post.Date).format('LT')}</span>
         </li>
     );
