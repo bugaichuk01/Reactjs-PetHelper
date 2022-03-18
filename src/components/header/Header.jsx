@@ -10,6 +10,7 @@ function Header() {
             <Link to='/'>Lost/Found</Link>
             <Link to='/report'>Report pet</Link>
         </div>
+
     );
 }
 
