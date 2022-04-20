@@ -1,5 +1,10 @@
 * {
-    font-family: 'Poppins', sans-serif !important;
+    font-family: 'Roboto', sans-serif !important;
+    text-decoration: none;
+}
+
+body {
+    background-color: #FFFFFe;
 }
 
 /* TextField */
@@ -7,30 +12,50 @@
     margin-top: 10px !important;
 }
 
+.MuiButton-root:hover {
+    background-color: #3f51b5 !important;
+}
+
+/* OutlinedInput */
 .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+    border-width: 1px !important;
     border-color: #EBF0FF !important;
 }
 
 .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-    border-color: #40BFFF !important;
+    border-color: #3f51b5 !important;
 }
 
 .MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
-    border-color: #FB7181 !important;
+    border-color: #ef5350 !important;
 }
 
+/* InputBase */
 .MuiInputBase-input {
     color: #9098B1 !important;
 }
 
+/* FormLabel */
 .MuiFormLabel-root {
     color: #9098B1 !important;
 }
 
 .MuiFormLabel-root.Mui-focused {
-    color: #40BFFF !important;
+    color: #3f51b5 !important;
 }
 
 .MuiFormLabel-root.Mui-error {
-    color: #FB7181 !important;
+    color: #ef5350 !important;
+}
+
+/* FormControl */
+.MuiFormControl-root {
+    width: 100% !important;
+}
+
+/* FormControl */
+.MuiButton-outlined {
+    border-width: 2px !important;
+    border-color: #3f51b5 !important;
+    color: #3f51b5 !important;
 }
