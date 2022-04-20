@@ -1,23 +1,34 @@
-import styles from './PostItem.module.css';
-import cn from 'classnames';
-import moment from 'moment';
+import React from 'react';
+import {Link} from "react-router-dom";
+import {ImageListItem, ImageListItemBar, Typography} from "@mui/material";
+import moment from "moment";
+import useStyles from "./PostItemStyles";
+import useScreenSize from "../../_hooks/useScreenSize";
 
-function PostItem({post}) {
+function PostItem({id, breed, name, status, eventDate, links}) {
+    const classes = useStyles();
+    const drawerActivate = useScreenSize();
 
     return (
-        <li className={styles.list__item} key={post.id}>
-            <img className={styles.list__img} src={post.photos ? post.photos : require('../../images/defaultPostImage.jpeg')} alt=""/>
-            <div>
-                <span className={styles.list__name}>{post.name}</span>
-                <span
-                    className={
-                    post.status === 'lost'
-                        ? cn(styles.list__status, styles.list__status_lost)
-                        : cn(styles.list__status, styles.list__status_found)}>{post.status}</span>
-            </div>
-            <span className={styles.list__name}>{post.breed}</span>
-            <span className={styles.list__name}>{moment(post.Date).format('LT')}</span>
-        </li>
+        <Link to={`/posts/${id}`}>
+            <ImageListItem className={classes.listItem} key={id}>
+                <div>
+                    <img
+                        src={links?.[2]?.href}
+                        alt={breed}
+                        loading="lazy"
+                        className={drawerActivate ? classes.imageSmall : classes.image}
+                    />
+                </div>
+                <ImageListItemBar
+                    title={<Typography sx={{fontWeight: 600}} variant='h6'>{name}</Typography>}
+                    subtitle={<Typography
+                        variant='body2'>{status}: {moment(eventDate).format('MMMM Do YYYY')}</Typography>}
+                    position="below"
+                    className={classes.itemBar}
+                />
+            </ImageListItem>
+        </Link>
     );
 }
 
