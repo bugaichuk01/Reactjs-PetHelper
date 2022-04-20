@@ -5,8 +5,9 @@ import {
     Box, Button, Container, Divider,
     TextField, Typography
 } from "@material-ui/core";
-import useStyles from './AuthStyles';
 import {Link} from "react-router-dom";
+import {Alert} from "@mui/material";
+import useStyles from './AuthStyles';
 
 const Login = () => {
     const classes = useStyles();
@@ -35,12 +36,12 @@ const Login = () => {
                 <Typography
                     className={classes.welcome}
                     variant={"subtitle1"}>
-                    Welcome back to PetHelper
+                    PetHelper
                 </Typography>
                 <Typography
                     className={classes.description}
                     variant={"body2"}>
-                    Sign in to continue
+                    Войдите, чтобы продолжить
                 </Typography>
                 <form onSubmit={onSubmit}>
                     <TextField
@@ -57,26 +58,29 @@ const Login = () => {
                         required
                         error={!!error}
                         variant='outlined'
-                        label='Password'
+                        label='Пароль'
                         name='password'
                         type='password'
                         onChange={onChange}
                     />
+
+                    {error && <Alert sx={{marginTop: '10px'}} severity="error"><strong>Error: </strong>Username or password is incorrect</Alert> }
+
                     <Button
                         fullWidth
                         variant="contained"
                         className={classes.button}
                         type='submit'
                     >
-                        Sign In
+                        Войти
                     </Button>
                 </form>
                 <Divider className={classes.divider}/>
                 <Typography className={classes.links} variant='body2'>
-                    <Link className={classes.link} to='/'>Forgot your password?</Link>
+                    <Link className={classes.link} to='/'>Забыли пароль?</Link>
                 </Typography>
-                <Typography className={classes.links} variant='body2'>Don't have an account?
-                    <Link className={classes.link} to='/register'> Register</Link>
+                <Typography className={classes.links} variant='body2'>Не зарегестрированы в системе?
+                    <Link className={classes.link} to='/register'> Регистрация</Link>
                 </Typography>
             </Box>
         </Container>
