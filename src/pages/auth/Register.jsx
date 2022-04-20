@@ -39,19 +39,19 @@ function Register() {
                 <Typography
                     className={classes.welcome}
                     variant={"subtitle1"}>
-                    Let's Get Started
+                    Добро пожалость в PetHelper!
                 </Typography>
                 <Typography
                     className={classes.description}
                     variant={"body2"}>
-                    Create an new account
+                    Создание учетной записи
                 </Typography>
                 <form onSubmit={onSubmit}>
                     <TextField
                         fullWidth
                         required
                         variant='outlined'
-                        label='Your Username'
+                        label='Ваш username'
                         name='username'
                         onChange={onChange}
                     />
@@ -59,7 +59,7 @@ function Register() {
                         fullWidth
                         required
                         variant='outlined'
-                        label='Your Email'
+                        label='Ваш Email'
                         name='email'
                         onChange={onChange}
                     />
@@ -68,7 +68,7 @@ function Register() {
                         required
                         error={!!error}
                         variant='outlined'
-                        label='Password'
+                        label='Пароль'
                         name='password'
                         type='password'
                         onChange={onChange}
@@ -78,7 +78,7 @@ function Register() {
                         required
                         error={!!error}
                         variant='outlined'
-                        label='Password again'
+                        label='Подтверждение пароля'
                         name='passwordConfirm'
                         type='password'
                         onChange={onChange}
@@ -89,11 +89,11 @@ function Register() {
                         className={classes.button}
                         type='submit'
                     >
-                        Sign In
+                        Регистрация
                     </Button>
                 </form>
-                <Typography className={classes.links} variant='body2'>Have a account?
-                    <Link className={classes.link} to='/login'> Sign in</Link>
+                <Typography className={classes.links} variant='body2'>Уже зарегестрированы?
+                    <Link className={classes.link} to='/login'> Войти</Link>
                 </Typography>
             </Box>
         </Container>
