@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import {ImageListItem, ImageListItemBar, Typography} from "@mui/material";
 import moment from "moment";
+import 'moment/locale/ru';
 import useStyles from "./PostItemStyles";
 import useScreenSize from "../../_hooks/useScreenSize";
 
