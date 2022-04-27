@@ -12,10 +12,6 @@ body {
     margin-top: 10px !important;
 }
 
-.MuiButton-root:hover {
-    background-color: #3f51b5 !important;
-}
-
 /* OutlinedInput */
 .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
     border-width: 1px !important;
