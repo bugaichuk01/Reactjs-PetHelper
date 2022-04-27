@@ -101,12 +101,12 @@ const Header = () => {
                         <div>
                             <Button
                                 sx={{
-                                    fontSize: 16,
-                                    textTransform: 'none',
-                                    color: '#fff',
-                                    fontWeight: 400,
-                                    padding: '0 30px 0 0',
-                                    lineHeight: 0
+                                    fontSize: '16px !important',
+                                    textTransform: 'none !important',
+                                    color: '#fff !important',
+                                    fontWeight: '400 !important',
+                                    padding: '0 30px 0 0 !important',
+                                    lineHeight: '0 !important'
                                 }}
                                 id="basic-button"
                                 aria-controls={open ? 'basic-menu' : undefined}
@@ -138,9 +138,9 @@ const Header = () => {
                             </Menu>
                         </div>
 
-                        <Link className={classes.linkLarge} to='/'>Помощь</Link>
+                        <Link className={classes.linkLarge} to='/help'>Помощь</Link>
                         {user
-                            ? <Link className={classes.linkLarge} to='/'>Профиль</Link>
+                            ? <Link className={classes.linkLarge} to='/profile'>Профиль</Link>
                             : <Link className={classes.linkLarge} to='/login'>Вход/Регистрация</Link>
                         }
                     </Toolbar>
