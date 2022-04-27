@@ -22,9 +22,10 @@ const login = (username, password) => {
         }
         return response.data.user;
     })
-        .catch(error => {
-            console.error(error)
-        });
+};
+
+const activate = async (code) => {
+    return await axios.post(`/api/user/activation/${code}`)
 };
 
 const logout = () => {
@@ -36,4 +37,5 @@ export default {
     register,
     login,
     logout,
+    activate
 };
