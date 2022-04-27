@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {login} from "../../store/actions/user";
 import {
@@ -6,24 +6,23 @@ import {
     TextField, Typography
 } from "@material-ui/core";
 import {Link} from "react-router-dom";
-import {Alert} from "@mui/material";
 import useStyles from './AuthStyles';
+import useFormData from "../../_hooks/useFormData";
+import SimpleAlert from "../../components/alerts/SimpleAlert";
 
 const Login = () => {
     const classes = useStyles();
-    const dispatch = useDispatch();
-    const {error} = useSelector(state => state.userReducer)
-    const [formData, setFormData] = useState({
+    const data = useFormData({
         username: '',
         password: '',
-    });
-    const {username, password} = formData;
-
-    const onChange = (event) => setFormData({...formData, [event.target.name]: event.target.value});
+    })
+    const {formData, onChange} = data;
+    const dispatch = useDispatch();
+    const {error} = useSelector(state => state.userReducer)
 
     const onSubmit = (e) => {
         e.preventDefault();
-        dispatch(login(username, password));
+        dispatch(login(formData.username, formData.password));
     }
 
     return (
@@ -64,7 +63,15 @@ const Login = () => {
                         onChange={onChange}
                     />
 
-                    {error && <Alert sx={{marginTop: '10px'}} severity="error"><strong>Error: </strong>Username or password is incorrect</Alert> }
+                    {
+                        error &&
+                        <SimpleAlert
+                            sx={{marginTop: '10px', textAlign: 'start'}}
+                            severity='error'
+                            title={'Ошибка авторизации'}
+                            text={'Юзернейм или пароль введены некорректно.'}
+                        />
+                    }
 
                     <Button
                         fullWidth
