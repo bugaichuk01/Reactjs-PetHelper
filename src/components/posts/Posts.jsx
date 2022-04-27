@@ -15,7 +15,7 @@ function Posts({slice, items, children}) {
     return (
         <React.Fragment>
             <ImageList cols={drawerActivate ? 2 : items}>
-                {posts.slice(0, slice).reverse().map((post) => (
+                {posts.reverse().slice(0, slice).map((post) => (
                     <PostItem key={post.id} {...post} />
                 ))}
             </ImageList>
