@@ -42,6 +42,11 @@ const useStyles = makeStyles({
         letterSpacing: 0.5,
         color: '#3f51b5',
         textDecoration: 'none'
+    },
+    map: {
+        width: '100%',
+        height: '500px',
+        marginTop: '10px'
     }
 });
 
