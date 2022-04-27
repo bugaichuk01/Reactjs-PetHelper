@@ -37,7 +37,7 @@ const useStyles = makeStyles({
         color: '#505050'
     },
     header: {
-        marginBottom: '80px'
+        marginBottom: '120px'
     }
 });
 
