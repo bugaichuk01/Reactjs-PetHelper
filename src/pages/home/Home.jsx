@@ -1,10 +1,9 @@
-import Header from "../../components/header/Header";
 import React from 'react';
 import {Container, Typography} from "@mui/material";
 import Posts from "../../components/posts/Posts";
 import {useNavigate} from "react-router-dom";
 import useStyles from "../report/ReportStyles";
-import {Button} from "@material-ui/core";
+import {Button} from "@mui/material";
 
 function Home() {
     const classes = useStyles();
@@ -12,10 +11,9 @@ function Home() {
 
     return (
         <React.Fragment>
-            <Header/>
             <Container maxWidth={'xl'}>
                 <Typography textAlign={'center'} variant='h6'>Последние потерянные и найденные домашние животные:</Typography>
-                <Posts slice={10} items={5}>
+                {/*<Posts slice={10} items={5}>*/}
                     <Container sx={{textAlign: 'center', width: '300px'}}>
                         <Button
                             fullWidth
@@ -26,7 +24,7 @@ function Home() {
                             Смотреть все объявления
                         </Button>
                     </Container>
-                </Posts>
+                {/*</Posts>*/}
             </Container>
         </React.Fragment>
     );
