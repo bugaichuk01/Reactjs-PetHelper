@@ -1,158 +1,92 @@
-import * as React from 'react';
+import React, {useState} from "react";
 import {
-    AppBar, Grid, List, ListItem, SwipeableDrawer,
+    AppBar,
+    Button,
+    Tab,
+    Tabs,
     Toolbar,
-    Typography
-} from "@material-ui/core";
-import {useState} from "react";
-import MenuIcon from '@material-ui/icons/Menu';
-import {Link} from "react-router-dom";
-import {Button, Menu, MenuItem} from "@mui/material";
-import useStyles from './HeaderStyle';
-import useScreenSize from "../../_hooks/useScreenSize";
+    Typography,
+    useMediaQuery,
+    useTheme,
+} from "@mui/material";
+import PetsIcon from '@mui/icons-material/Pets';
+import DrawerComp from "./Drawer";
+import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 
 const Header = () => {
-    const classes = useStyles();
-    const drawerActivate = useScreenSize();
     const {user} = useSelector(state => state.userReducer);
-    const [drawer, setDrawer] = useState(false);
-
-    const [anchorEl, setAnchorEl] = useState(null);
-    const open = Boolean(anchorEl);
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
-    //Small Screens
-    const createDrawer = () => {
-        return (
-            <header className={classes.header}>
-                <AppBar>
-                    <Toolbar>
-                        <Grid container direction="row" justify="space-between" alignItems="center">
-                            <MenuIcon
-                                className={classes.sideBarIcon}
-                                onClick={() => {
-                                    setDrawer(true)
-                                }}/>
-
-                            <Link className={classes.logoSmall} to='/'>PetHelper</Link>
-                            <Typography color="inherit" variant="headline"/>
-                        </Grid>
-                    </Toolbar>
-                </AppBar>
-
-                <SwipeableDrawer
-                    open={drawer}
-                    onClose={() => {
-                        setDrawer(false)
-                    }}
-                    onOpen={() => {
-                        setDrawer(true)
-                    }}>
-
-                    <div
-                        tabIndex={0}
-                        role="button"
-                        onClick={() => {
-                            setDrawer(false)
-                        }}
-                        onKeyDown={() => {
-                            setDrawer(false)
-                        }}>
-
-                        <List className={classes.list}>
-                            <ListItem button divider>
-                                <Link className={classes.linkSmall} to='/'>Lost/Found</Link>
-                            </ListItem>
-                            <ListItem button divider>
-                                <Link className={classes.linkSmall} to='/'>How it works</Link>
-                            </ListItem>
-                            <ListItem button divider>
-                                <Link className={classes.linkSmall} to='/'>Report Pet</Link>
-                            </ListItem>
-                            <ListItem button divider>
-                                {user
-                                    ? <Link className={classes.linkSmall} to='/'>Profile</Link>
-                                    : <Link className={classes.linkSmall} to='/login'>Join/Login</Link>
-                                }
-                            </ListItem>
-                        </List>
-
-                    </div>
-                </SwipeableDrawer>
-
-            </header>
-        );
-    }
-
-    //Larger Screens
-    const destroyDrawer = () => {
-        return (
-            <header className={classes.header}>
-                <AppBar>
-                    <Toolbar>
-                        <Link className={classes.logoLarge} to='/'>PetHelper</Link>
-
-                        <div>
-                            <Button
-                                sx={{
-                                    fontSize: '16px !important',
-                                    textTransform: 'none !important',
-                                    color: '#fff !important',
-                                    fontWeight: '400 !important',
-                                    padding: '0 30px 0 0 !important',
-                                    lineHeight: '0 !important'
-                                }}
-                                id="basic-button"
-                                aria-controls={open ? 'basic-menu' : undefined}
-                                aria-haspopup="true"
-                                aria-expanded={open ? 'true' : undefined}
-                                onClick={handleClick}
-                            >
-                                Объявления
-                            </Button>
-                            <Menu
-                                id="basic-menu"
-                                anchorEl={anchorEl}
-                                open={open}
-                                onClose={handleClose}
-                                MenuListProps={{
-                                    'aria-labelledby': 'basic-button',
-                                }}
-                            >
-                                <MenuItem onClick={handleClose}>
-                                    <Link className={classes.menuItem} to='/posts'>
-                                        Все объявления
-                                    </Link>
-                                </MenuItem>
-                                <MenuItem onClick={handleClose}>
-                                    <Link className={classes.menuItem} to='/report'>
-                                        Создать объявление
-                                    </Link>
-                                </MenuItem>
-                            </Menu>
-                        </div>
-
-                        <Link className={classes.linkLarge} to='/help'>Помощь</Link>
-                        {user
-                            ? <Link className={classes.linkLarge} to='/profile'>Профиль</Link>
-                            : <Link className={classes.linkLarge} to='/login'>Вход/Регистрация</Link>
-                        }
-                    </Toolbar>
-                </AppBar>
-            </header>
-        )
-    }
+    const [value, setValue] = useState();
+    const navigate = useNavigate();
+    const theme = useTheme();
+    console.log(theme, value);
+    const isMatch = useMediaQuery(theme.breakpoints.down("md"));
+    console.log(isMatch);
 
     return (
-        <div>
-            {drawerActivate ? createDrawer() : destroyDrawer()}
-        </div>
+        <React.Fragment>
+            <header style={{marginBottom: '100px'}}>
+                <AppBar sx={{background: "#063970"}}>
+                    <Toolbar sx={isMatch && {justifyContent: 'space-between'}}>
+                        <PetsIcon sx={{transform: "scale(2) !important"}}/>
+                        <Typography sx={isMatch ? {fontSize: "2rem", paddingLeft: "10% !important"} : {
+                            fontSize: "2rem",
+                            paddingLeft: "2% !important"
+                        }}>
+                            PetHelper
+                        </Typography>
+                        {isMatch ? (
+                            <>
+                                <DrawerComp/>
+                            </>
+                        ) : (
+                            <>
+                                <Tabs
+                                    sx={{marginLeft: "auto !important"}}
+                                    indicatorColor="secondary"
+                                    textColor="inherit"
+                                    value={value}
+                                    onChange={(e, value) => {
+                                        setValue(value)
+                                        navigate(`/${value}`)
+                                    }}
+                                >
+                                    <Tab value='' label="Главная страница"/>
+                                    <Tab value='report' label="Создать объявление"/>
+                                    <Tab value='posts' label="Объявления"/>
+                                    <Tab value='help' label="Помощь"/>
+                                </Tabs>
+                                {
+                                    user
+                                        ? (
+                                            <Button sx={{marginLeft: "auto !important"}}
+                                                    onClick={() => navigate('/profile')}
+                                                    variant="contained">
+                                                Профиль
+                                            </Button>
+                                        )
+                                        : (
+                                            <>
+                                                <Button sx={{marginLeft: "auto !important"}}
+                                                        onClick={() => navigate('/login')}
+                                                        variant="contained">
+                                                    Вход
+                                                </Button>
+                                                <Button sx={{marginLeft: "10px !important"}}
+                                                        onClick={() => navigate('/register')}
+                                                        variant="contained">
+                                                    Регистрация
+                                                </Button>
+                                            </>
+                                        )
+                                }
+                            </>
+                        )}
+                    </Toolbar>
+                </AppBar>
+            </header>
+        </React.Fragment>
     );
 };
+
 export default Header;
