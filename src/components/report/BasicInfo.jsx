@@ -10,7 +10,9 @@ function BasicInfo({onChange, classes, formData, setFormData}) {
         species,
         breed,
         gender,
-        castration
+        castration,
+        age,
+        health
     } = formData;
 
     return (
@@ -111,6 +113,7 @@ function BasicInfo({onChange, classes, formData, setFormData}) {
                             <InputLabel>Стерилизован</InputLabel>
                             <Select
                                 name='castration'
+                                required
                                 label="Стерилизован"
                                 value={castration}
                                 onChange={onChange}
@@ -121,13 +124,37 @@ function BasicInfo({onChange, classes, formData, setFormData}) {
                             </Select>
                         </FormControl>
                     </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                            variant='outlined'
-                            label='Возраст (если известен)'
+                    <Grid item xs={6}>
+                        <InputLabel>Возраст</InputLabel>
+                        <Select
                             name='age'
+                            required
+                            label="Возраст"
+                            fullWidth
+                            value={age}
                             onChange={onChange}
-                        />
+                        >
+                            <MenuItem value={'Неизвестно'}>Я не знаю</MenuItem>
+                            <MenuItem value={'До 1 года'}>До 1 года</MenuItem>
+                            <MenuItem value={'От 1 до 3 лет'}>От 1 до 3 лет</MenuItem>
+                            <MenuItem value={'От 3 до 7 лет'}>От 3 до 7 лет</MenuItem>
+                            <MenuItem value={'Старше 7 лет'}>Старше 7 лет</MenuItem>
+                        </Select>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <InputLabel>Состояние</InputLabel>
+                        <Select
+                            name='health'
+                            fullWidth
+                            required
+                            label="Состояние"
+                            value={health}
+                            onChange={onChange}
+                        >
+                            <MenuItem value={'Здоров'}>Здоров</MenuItem>
+                            <MenuItem value={'Болен'}>Болен</MenuItem>
+                            <MenuItem value={'Ранен'}>Ранен</MenuItem>
+                        </Select>
                     </Grid>
                     <Grid item xs={12}>
                         <TextField
