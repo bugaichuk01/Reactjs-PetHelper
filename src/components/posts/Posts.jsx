@@ -49,7 +49,7 @@ function Posts({items, children}) {
                             <div>
                                 <ImageList className={classes.imageList} cols={drawerActivate ? 1 : items}>
                                     {paginated.map((post) => (
-                                        <PostItem key={post.id} {...post} />
+                                        <PostItem key={post?.id} {...post} />
                                     ))}
                                 </ImageList>
 
