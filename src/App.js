@@ -15,6 +15,8 @@ import Unknown from "./pages/404/Unknown";
 import AdminPanel from "./pages/admin-panel/AdminPanel";
 import Header from "./components/header/Header";
 import React from "react";
+import ForgetPassword from "./pages/auth/ForgetPassword";
+import ChangePassword from "./pages/auth/ChangePassword";
 
 function App() {
     const {user} = useSelector(state => state.userReducer);
@@ -29,6 +31,8 @@ function App() {
                 />
                 <Route path="/login" element={user ? <Navigate replace to='/'/> : <Login/>}/>
                 <Route path="/register" element={user ? <Navigate replace to='/'/> : <Register/>}/>
+                <Route path="/forgetPass" element={user ? <Navigate replace to='/'/> : <ForgetPassword/>}/>
+                <Route path="/changePassword/:code" element={user ? <Navigate replace to='/'/> : <ChangePassword/>}/>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/posts" element={<PostsPage/>}/>
                 <Route path="/report" element={user ? <Report/> : <Navigate replace to='/login'/>}/>

@@ -27,6 +27,14 @@ const activate = async (code) => {
     return await axios.post(`/api/user/activation/${code}`)
 };
 
+const forget = async (email) => {
+    return await axios.post(`/api/user/forgetPassword/?email=${email}`)
+};
+
+const changePassword = async (code, password) => {
+    return await axios.post(`/api/user/changePassword/${code}`, {"password": password})
+};
+
 const logout = () => {
     localStorage.clear();
 };
@@ -36,5 +44,7 @@ export default {
     register,
     login,
     logout,
-    activate
+    activate,
+    forget,
+    changePassword
 };

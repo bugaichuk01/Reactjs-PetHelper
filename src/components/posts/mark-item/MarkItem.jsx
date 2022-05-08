@@ -32,7 +32,11 @@ const balloonContentBody = ({post}) => {
 function MarkItem({post}) {
     return (
         <div>
-            <Placemark properties={{
+            <Placemark
+                options={post.status === 'Потерян' &&{
+                     iconColor: '#ea0000'
+                }}
+                properties={{
                 balloonContentHeader: balloonContentHeader({post}),
                 balloonContentBody: balloonContentBody({post})
             }}

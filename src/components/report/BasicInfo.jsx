@@ -2,7 +2,7 @@ import React from 'react';
 import {Box, Container, FormControl, Grid, InputLabel, MenuItem, Select, Typography} from "@mui/material";
 import {TextField} from "@material-ui/core";
 import {animalsArray, animalsObject} from "../../_constants";
-import { Autocomplete } from '@mui/material';
+import {Autocomplete} from '@mui/material';
 
 function BasicInfo({onChange, classes, formData, setFormData}) {
     const {
@@ -77,7 +77,7 @@ function BasicInfo({onChange, classes, formData, setFormData}) {
                                 id="free-solo-demo"
                                 value={breed ?? ""}
                                 isOptionEqualToValue={(option, value) => option.value === value.value}
-                                onChange={(e, value) =>  setFormData({...formData, breed: value})}
+                                onChange={(e, value) => setFormData({...formData, breed: value})}
                                 options={species && animalsObject[species].breeds.map(item => item)}
                                 renderInput={(params) =>
                                     <TextField
@@ -125,36 +125,40 @@ function BasicInfo({onChange, classes, formData, setFormData}) {
                         </FormControl>
                     </Grid>
                     <Grid item xs={6}>
-                        <InputLabel>Возраст</InputLabel>
-                        <Select
-                            name='age'
-                            required
-                            label="Возраст"
-                            fullWidth
-                            value={age}
-                            onChange={onChange}
-                        >
-                            <MenuItem value={'Неизвестно'}>Я не знаю</MenuItem>
-                            <MenuItem value={'До 1 года'}>До 1 года</MenuItem>
-                            <MenuItem value={'От 1 до 3 лет'}>От 1 до 3 лет</MenuItem>
-                            <MenuItem value={'От 3 до 7 лет'}>От 3 до 7 лет</MenuItem>
-                            <MenuItem value={'Старше 7 лет'}>Старше 7 лет</MenuItem>
-                        </Select>
+                        <FormControl>
+                            <InputLabel>Возраст</InputLabel>
+                            <Select
+                                name='age'
+                                required
+                                label="Возраст"
+                                fullWidth
+                                value={age}
+                                onChange={onChange}
+                            >
+                                <MenuItem value={'Неизвестно'}>Я не знаю</MenuItem>
+                                <MenuItem value={'До 1 года'}>До 1 года</MenuItem>
+                                <MenuItem value={'От 1 до 3 лет'}>От 1 до 3 лет</MenuItem>
+                                <MenuItem value={'От 3 до 7 лет'}>От 3 до 7 лет</MenuItem>
+                                <MenuItem value={'Старше 7 лет'}>Старше 7 лет</MenuItem>
+                            </Select>
+                        </FormControl>
                     </Grid>
                     <Grid item xs={6}>
-                        <InputLabel>Состояние</InputLabel>
-                        <Select
-                            name='health'
-                            fullWidth
-                            required
-                            label="Состояние"
-                            value={health}
-                            onChange={onChange}
-                        >
-                            <MenuItem value={'Здоров'}>Здоров</MenuItem>
-                            <MenuItem value={'Болен'}>Болен</MenuItem>
-                            <MenuItem value={'Ранен'}>Ранен</MenuItem>
-                        </Select>
+                        <FormControl>
+                            <InputLabel>Состояние</InputLabel>
+                            <Select
+                                name='health'
+                                fullWidth
+                                required
+                                label="Состояние"
+                                value={health}
+                                onChange={onChange}
+                            >
+                                <MenuItem value={'Здоров'}>Здоров</MenuItem>
+                                <MenuItem value={'Болен'}>Болен</MenuItem>
+                                <MenuItem value={'Ранен'}>Ранен</MenuItem>
+                            </Select>
+                        </FormControl>
                     </Grid>
                     <Grid item xs={12}>
                         <TextField

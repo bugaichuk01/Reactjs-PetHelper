@@ -2,13 +2,14 @@ import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {login} from "../../store/actions/user";
 import {
-    Box, Button, Container, Divider,
+    Box, Container, Divider,
     TextField, Typography
 } from "@material-ui/core";
 import {Link} from "react-router-dom";
 import useStyles from './AuthStyles';
 import useFormData from "../../_hooks/useFormData";
 import SimpleAlert from "../../components/alerts/SimpleAlert";
+import {Button} from "@mui/material";
 
 const Login = () => {
     const classes = useStyles();
@@ -83,7 +84,7 @@ const Login = () => {
                 </form>
                 <Divider className={classes.divider}/>
                 <Typography className={classes.links} variant='body2'>
-                    <Link className={classes.link} to='/'>Забыли пароль?</Link>
+                    <Link className={classes.link} to='/forgetPass'>Забыли пароль?</Link>
                 </Typography>
                 <Typography className={classes.links} variant='body2'>Не зарегестрированы в системе?
                     <Link className={classes.link} to='/register'> Регистрация</Link>
