@@ -15,10 +15,11 @@ import {DatePicker} from "@mui/lab";
 import moment from "moment";
 import YMap from "../ymap/YMap";
 import AddressInput from "../address-input/AddressInput";
+import {Placemark} from "react-yandex-maps";
 
 function Details({onChange, classes, formData, setFormData}) {
     const {
-        cash,
+        award,
         eventDate,
         address,
     } = formData;
@@ -52,8 +53,8 @@ function Details({onChange, classes, formData, setFormData}) {
                     <FormControl variant="outlined">
                         <InputLabel>Вознаграждение</InputLabel>
                         <OutlinedInput
-                            value={cash}
-                            name='cash'
+                            value={award}
+                            name='award'
                             label='Вознаграждение'
                             onChange={onChange}
                             endAdornment={<InputAdornment position="end">₽</InputAdornment>}
@@ -66,11 +67,12 @@ function Details({onChange, classes, formData, setFormData}) {
                 </Grid>
             </Grid>
             <YMap
-                geometry={coordinates}
                 setCoordinates={setCoordinates}
                 classes={classes.map}
                 defaultState={{center: [55.75, 37.57], zoom: 9}}
-            />
+            >
+                <Placemark geometry={coordinates}/>
+            </YMap>
         </Container>
     );
 }
