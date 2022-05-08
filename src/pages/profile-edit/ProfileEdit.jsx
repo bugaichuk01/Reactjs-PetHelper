@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {TextField} from "@material-ui/core";
-import Header from "../../components/header/Header";
 import {Container, Divider} from "@mui/material";
 import {useSelector} from "react-redux";
 import userService from "../../_services/user.service";
@@ -10,17 +9,18 @@ import YMap from "../../components/ymap/YMap";
 import Typography from "@mui/material/Typography";
 import SimpleAlert from "../../components/alerts/SimpleAlert";
 import useFormData from "../../_hooks/useFormData";
+import {Placemark} from "react-yandex-maps";
+import GoBack from "../../components/button/go-back/GoBack";
 
 function ProfileEdit() {
     const classes = useStyles();
     const {user} = useSelector(state => state.userReducer)
-    const data = useFormData({
+    const {formData, setFormData, onChange} = useFormData({
         name: user.name,
         email: user.email,
         mobileNumber: user.mobileNumber,
         address: user.address
     })
-    const {formData, setFormData, onChange} = data;
     const [updated, setUpdated] = useState(false);
     const [coordinates, setCoordinates] = useState([]);
 
@@ -45,8 +45,8 @@ function ProfileEdit() {
 
     return (
         <div>
-            <Header/>
             <Container maxWidth={'md'}>
+                <GoBack />
                 <Typography sx={{color: 'text.primary', marginBottom: '5px'}} variant={'h4'}>Ваши данные</Typography>
                 <Divider sx={{marginBottom: '25px'}}/>
                 {
@@ -104,12 +104,12 @@ function ProfileEdit() {
                                   coordinates={coordinates} setCoordinates={setCoordinates}/>
 
                     <YMap
-                        geometry={coordinates}
                         setCoordinates={setCoordinates}
                         classes={classes.map}
                         defaultState={{center: [55.75, 37.57], zoom: 9}}
-                    />
-
+                    >
+                        <Placemark geometry={coordinates}/>
+                    </YMap>
                     <button className={classes.button} type={'submit'}>
                         Обновить
                     </button>
