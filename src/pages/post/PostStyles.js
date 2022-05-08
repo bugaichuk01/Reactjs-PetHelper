@@ -7,16 +7,17 @@ const useStyles = makeStyles({
     },
     container: {
         display: 'flex !important',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     rightBar: {
         padding: '20px !important',
         width: '60% !important',
-        margin: '20px 0 0 20px !important'
+        margin: '36.5px 0 0 20px !important'
     },
     map: {
         width: '100%',
         height: '45%',
+        marginBottom: '10px',
     },
     mapText: {
         color: '#fff',
@@ -28,7 +29,6 @@ const useStyles = makeStyles({
         borderTopRightRadius: '10px',
     },
     box: {
-        marginTop: '20px',
         padding: '20px',
         maxWidth: '60%'
     },
