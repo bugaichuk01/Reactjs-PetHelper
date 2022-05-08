@@ -3,6 +3,7 @@ import {Avatar, Divider, Typography} from "@mui/material";
 import checkStatus from "../../../_utils/checkStatus";
 import {Box} from "@material-ui/core";
 import moment from "moment";
+import GoBack from "../../button/go-back/GoBack";
 
 function PostContainer({currentPost, classes}) {
     const eventDate = moment(currentPost.eventDate).format('MMMM Do YYYY');
@@ -10,6 +11,7 @@ function PostContainer({currentPost, classes}) {
 
     return (
         <Box className={classes.box}>
+            <GoBack />
             <img className={classes.image} src={currentPost?._links?.photoLink?.href} alt=""/>
             <Typography className={classes.text} variant={'subtitle1'}>
                 <strong>Имя питомца:</strong> {currentPost.name}
@@ -33,6 +35,18 @@ function PostContainer({currentPost, classes}) {
             <Divider/>
             <Typography className={classes.text} variant={'subtitle1'}>
                 <strong>Порода:</strong> {currentPost.breed}
+            </Typography>
+            <Divider/>
+            <Typography className={classes.text} variant={'subtitle1'}>
+                <strong>Стерелизован:</strong> {currentPost.castration}
+            </Typography>
+            <Divider/>
+            <Typography className={classes.text} variant={'subtitle1'}>
+                <strong>Возраст:</strong> {currentPost.age}
+            </Typography>
+            <Divider/>
+            <Typography className={classes.text} variant={'subtitle1'}>
+                <strong>Состояние:</strong> {currentPost.health}
             </Typography>
             <Divider/>
             <Typography className={classes.text} variant={'subtitle1'}>
