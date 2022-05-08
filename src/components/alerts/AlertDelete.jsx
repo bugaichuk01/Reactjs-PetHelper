@@ -1,8 +1,7 @@
 import React from 'react';
 import {Button, Dialog, DialogActions, DialogTitle} from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
 
-function AlertDelete({confirm, text}) {
+function AlertDelete({confirm, text, icon, btnText}) {
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -14,9 +13,16 @@ function AlertDelete({confirm, text}) {
     };
     return (
         <div style={{alignSelf: 'center'}}>
-            <Button onClick={handleClickOpen} color={'error'} variant='contained' startIcon={<DeleteIcon />}>
-                Удалить
+            <Button
+                onClick={handleClickOpen}
+                color={'error'}
+                variant='contained'
+                startIcon={icon}
+                fullWidth
+            >
+                {btnText}
             </Button>
+
             <Dialog
                 open={open}
                 onClose={handleClose}
