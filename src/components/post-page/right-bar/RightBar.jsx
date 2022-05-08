@@ -1,8 +1,11 @@
 import React from 'react';
 import {Avatar, Box, Container, Divider, Typography} from "@mui/material";
-import YMap from "../../ymap/YMap";
+import YMap from "../../ymap/YMap"
+import isMyItem from "../../../_utils/isMyItem";
+import DeletePost from "../../button/delete-post/DeletePost";
+import {Placemark} from "react-yandex-maps";
 
-function RightBar({classes, currentPost, coordinates }) {
+function RightBar({classes, currentPost, coordinates}) {
     return (
         <Container className={classes.rightBar}>
             <Typography className={classes.mapText} variant={'subtitle1'}>
@@ -15,7 +18,7 @@ function RightBar({classes, currentPost, coordinates }) {
                     {currentPost?.user?.name}
                 </Typography>
             </Box>
-            <Divider />
+            <Divider/>
             <Box className={classes.contacts}>
                 <Typography className={classes.text} variant={'subtitle1'}>
                     <strong>Номер для связи:</strong>
@@ -24,7 +27,7 @@ function RightBar({classes, currentPost, coordinates }) {
                     {currentPost?.user?.mobileNumber}
                 </Typography>
             </Box>
-            <Divider />
+            <Divider/>
             <Box className={classes.contacts}>
                 <Typography className={classes.text} variant={'subtitle1'}>
                     <strong>Почта автора:</strong>
@@ -33,22 +36,28 @@ function RightBar({classes, currentPost, coordinates }) {
                     {currentPost?.user?.email}
                 </Typography>
             </Box>
-            <Divider />
+            <Divider/>
             <Box className={classes.contacts}>
                 <Typography className={classes.text} variant={'subtitle1'}>
                     <strong> Вознагражение:</strong>
                 </Typography>
                 <Typography className={classes.text} variant={'subtitle1'}>
-                    8000000
+                    {currentPost?.award}
                 </Typography>
             </Box>
 
             <YMap
-                geometry={coordinates}
                 defaultState={{center: coordinates, zoom: 12}}
                 classes={classes.map}
-            />
+            >
+                <Placemark geometry={coordinates}/>
+            </YMap>
 
+            {
+                isMyItem(currentPost) && (
+                    <DeletePost currentPost={currentPost} />
+                )
+            }
         </Container>
     );
 }
