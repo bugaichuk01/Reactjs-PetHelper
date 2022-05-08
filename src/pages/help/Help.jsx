@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from "../../components/header/Header";
 import {Container, Divider} from "@mui/material";
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -7,6 +6,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {Link} from "react-router-dom";
+import GoBack from "../../components/button/go-back/GoBack";
 
 function Help() {
     const [expanded, setExpanded] = React.useState(false);
@@ -17,8 +17,8 @@ function Help() {
 
     return (
         <div>
-            <Header/>
             <Container>
+                <GoBack />
                 <Typography sx={{color: 'text.primary', marginBottom: '5px'}} variant={'h4'}>Часто задаваемые вопросы</Typography>
                 <Divider sx={{marginBottom: '5px'}} />
                 <Typography sx={{color: 'text.primary', marginBottom: '25px'}} variant={'subtitle1'}>Здесь вы можете найти ответы на наиболее часто задаваемые вопросы:</Typography>
