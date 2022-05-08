@@ -1,17 +1,17 @@
 import React from 'react';
 import Typography from "@mui/material/Typography";
 import {Box, Container, Divider} from "@mui/material";
-import Header from "../../components/header/Header";
 import ProfileCard from "../../components/profile-card/ProfileCard";
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
+import GoBack from "../../components/button/go-back/GoBack";
 
 function Profile() {
     return (
         <div>
-            <Header/>
             <Container>
+                <GoBack />
                 <Typography sx={{color: 'text.primary', marginBottom: '5px'}} variant={'h4'}>Ваш аккаунт</Typography>
                 <Divider sx={{marginBottom: '25px'}}/>
                 <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
