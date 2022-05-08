@@ -33,12 +33,19 @@ function Activation() {
                         </React.Fragment>
                     )
                     : (
-                        <SimpleAlert
-                            sx={{marginTop: '50px'}}
-                            severity={'error'}
-                            title={'Упс, что-то пошло не так'}
-                            text={'Данные обработаны некорректно, повторите попытку позже.'}
-                        />
+                        <React.Fragment>
+                            <SimpleAlert
+                                sx={{marginTop: '50px'}}
+                                severity={'error'}
+                                title={'Упс, что-то пошло не так'}
+                                text={'Данные обработаны некорректно, повторите попытку позже.'}
+                            />
+                            <div style={{textAlign: 'center', marginTop: '10px'}}>
+                                <Link to={'/'}>
+                                    Главная страница
+                                </Link>
+                            </div>
+                        </React.Fragment>
                     )
             }
         </Container>
