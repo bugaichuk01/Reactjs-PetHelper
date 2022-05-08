@@ -7,28 +7,31 @@ import {
 } from "@mui/material";
 import {Button, TextField} from "@material-ui/core";
 import _ from "lodash";
-import commentService from "../../../_services/comment.service";
 import CommentItem from "../comment-item/CommentItem";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import SimpleAlert from "../../alerts/SimpleAlert";
+import {getComments, postComment} from "../../../store/actions/comment";
 
 function PostComments({pageSize, currentPost, classes}) {
+    const dispatch = useDispatch();
+
     const [paginated, setPaginated] = useState();
     const [value, setValue] = useState('');
-    const [comments, setComments] = useState([]);
 
+    const {comments, isFetching} = useSelector(state => state.commentReducer);
     const {user} = useSelector(state => state.userReducer);
 
     useEffect(() => {
-        currentPost.id && commentService.getComments(currentPost.id)
-            .then(r => setComments(r.data.reverse()));
+        currentPost.id && dispatch(getComments(currentPost.id));
+    }, [currentPost.id, dispatch])
+
+    useEffect(() => {
         setPaginated(_(comments).slice(0).take(pageSize).value())
-    }, [currentPost.id, comments.length])
+    }, [currentPost.id, comments, pageSize])
 
     const onCommentPost = (e) => {
         e.preventDefault();
-        commentService.postComment(currentPost.id, value)
-            .then(r => setComments([r.data, ...comments]));
+        dispatch(postComment(currentPost.id, value));
         setValue('');
     }
 
@@ -82,14 +85,17 @@ function PostComments({pageSize, currentPost, classes}) {
                 </form>
                 <List sx={{width: '100%'}}>
                     {
-                        paginated && paginated.map((item) => (
-                            <React.Fragment key={item.id}>
-                                <CommentItem item={item} setComments={setComments} comments={comments}/>
-                                {
-                                    paginated.indexOf(item) !== paginated.length - 1 && (<Divider/>)
-                                }
-                            </React.Fragment>
-                        ))
+                        !isFetching &&
+                        (
+                            paginated && paginated.map((item) => (
+                                    <React.Fragment key={item.id}>
+                                        <CommentItem item={item}/>
+                                        {
+                                            paginated.indexOf(item) !== paginated.length - 1 && (<Divider/>)
+                                        }
+                                    </React.Fragment>
+                                )
+                            ))
                     }
                 </List>
                 <Stack spacing={2}>
