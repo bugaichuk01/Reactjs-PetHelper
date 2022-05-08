@@ -12,17 +12,11 @@ const getById = async (id) => {
     return await axios.get(`/api/animal/getById`, {
         params: {id: id}
     })
-        .catch(error => {
-            console.error(error)
-        });
 }
 
 const addReport = async (data) => {
     return axios.post('/api/animal/add', data,
         {headers: authHeader()})
-        .catch(error => {
-            console.error(error)
-        });
 }
 
 const getAvatar = async (id) => {
@@ -30,17 +24,28 @@ const getAvatar = async (id) => {
         params: {id: id}
     })
         .catch(error => {
-        console.error(error)
-    })
+            console.error(error)
+        })
 }
 
 const postImage = async (data) => {
     return await axios.post('/api/animal/fileserver/add', data,
         {
             headers: authHeader()
-        }).catch(error => {
-        console.error(error)
-    })
+        })
+        .catch(error => {
+            console.error(error)
+        })
+}
+
+const deletePost = async (id) => {
+    return await axios.delete(`/api/animal/delete/?id=${id}`,
+        {
+            headers: authHeader()
+        })
+        .catch(error => {
+            console.error(error)
+        })
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -49,5 +54,6 @@ export default {
     getById,
     addReport,
     postImage,
-    getAvatar
+    getAvatar,
+    deletePost
 }
