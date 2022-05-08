@@ -1,14 +1,14 @@
 import {makeStyles} from '@material-ui/styles';
 
 const useStyles = makeStyles({
-    imageList: {
-        maxWidth: 1200,
-        marginTop: 10
-    },
     listItem: {
         backgroundColor: '#3f51b5',
         borderRadius: '10px',
-        margin: '10px'
+        margin: '0 10px 10px 10px',
+        "@media (max-width: 680px)": {
+            marginTop: '10px',
+            width: '100%%'
+        }
     },
     itemBar: {
         padding: '10px',
@@ -26,7 +26,7 @@ const useStyles = makeStyles({
         borderTopLeftRadius: '10px',
         width: '100%',
         objectFit: "cover",
-        height: '10vh'
+/*        height: '10vh'*/
     }
 });
 
