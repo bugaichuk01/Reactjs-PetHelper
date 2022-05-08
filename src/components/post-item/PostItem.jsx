@@ -11,8 +11,8 @@ function PostItem({id, breed, name, status, eventDate, links}) {
     const drawerActivate = useScreenSize();
 
     return (
-        <Link to={`/posts/${id}`}>
-            <ImageListItem className={classes.listItem} key={id}>
+        <Link className={classes.listItem} to={`/posts/${id}`}>
+            <ImageListItem key={id}>
                 <div>
                     <img
                         src={links?.[2]?.href}
