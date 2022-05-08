@@ -8,10 +8,11 @@ import authService from "../../_services/auth.service";
 import {useGeolocation} from "react-use";
 import useFormData from "../../_hooks/useFormData";
 import SimpleAlert from "../../components/alerts/SimpleAlert";
+import {Placemark} from "react-yandex-maps";
 
 function Register() {
     const classes = useStyles();
-    const data = useFormData({
+    const {formData, setFormData, onChange} = useFormData({
         name: '',
         username: '',
         email: '',
@@ -23,7 +24,6 @@ function Register() {
         },
         password: ''
     })
-    const {formData, setFormData, onChange} = data;
 
     const [error, setError] = useState(false);
     const [dataError, setDataError] = useState(false);
@@ -125,10 +125,11 @@ function Register() {
 
                                     <YMap
                                         setCoordinates={setCoordinates}
-                                        geometry={coordinates}
                                         classes={classes.map}
                                         defaultState={{center: [55.75, 37.57], zoom: 9}}
-                                    />
+                                    >
+                                        <Placemark geometry={coordinates}/>
+                                    </YMap>
                                     <TextField
                                         fullWidth
                                         required
