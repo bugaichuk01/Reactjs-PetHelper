@@ -12,11 +12,10 @@ import SimpleAlert from "../../components/alerts/SimpleAlert";
 
 const Login = () => {
     const classes = useStyles();
-    const data = useFormData({
+    const {formData, onChange} = useFormData({
         username: '',
         password: '',
     })
-    const {formData, onChange} = data;
     const dispatch = useDispatch();
     const {error} = useSelector(state => state.userReducer)
 
