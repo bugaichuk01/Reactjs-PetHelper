@@ -2,7 +2,7 @@ import {makeStyles} from '@material-ui/styles';
 
 const useStyles = makeStyles({
     container: {
-        marginTop: '80px',
+        marginTop: '20px',
         padding: '15px',
         borderRadius: '10px',
         boxShadow: '0 10px 30px #CECECEFF'
