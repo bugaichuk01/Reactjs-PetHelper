@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import postService from "../../_services/post.service";
-import Header from "../../components/header/Header";
 import useStyles from "../post/PostStyles";
 import {
     Container
@@ -14,17 +13,19 @@ import RightBar from "../../components/post-page/right-bar/RightBar";
 function Post() {
     const classes = useStyles();
     const {post} = useParams();
+    let navigate = useNavigate();
     const [currentPost, setCurrentPost] = useState({});
     const [coordinates, setCoordinates] = useState([]);
 
     useEffect(() => {
-        postService.getById(post).then(r => setCurrentPost(r.data))
+        postService.getById(post)
+            .then(r => setCurrentPost(r.data))
+            .catch(() =>  navigate('/unknown'))
         currentPost?.address?.x && currentPost?.address?.y && setCoordinates([currentPost?.address?.y, currentPost?.address?.x])
     }, [currentPost?.address?.x, currentPost?.address?.y])
 
     return (
         <React.Fragment>
-            <Header/>
             <Container className={classes.container} maxWidth={'lg'}>
                 <PostContainer currentPost={currentPost} classes={classes} />
                 <RightBar classes={classes} currentPost={currentPost} coordinates={coordinates} />
