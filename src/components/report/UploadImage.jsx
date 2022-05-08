@@ -1,5 +1,4 @@
-import {Container, Input, Typography} from "@mui/material";
-import {Button} from "@material-ui/core";
+import {Container, Input, Typography, Button} from "@mui/material";
 
 function UploadImage({setPostImage, classes, postImage}) {
     return (
