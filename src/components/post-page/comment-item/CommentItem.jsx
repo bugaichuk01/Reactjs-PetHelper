@@ -1,18 +1,9 @@
 import React from 'react';
 import {Avatar, ListItem, ListItemAvatar, ListItemText, Typography} from "@mui/material";
-import commentService from "../../../_services/comment.service";
-import {useSelector} from "react-redux";
-import AlertDelete from "../../alerts/AlertDelete";
+import isMyItem from "../../../_utils/isMyItem";
+import DeleteComment from "../../button/delete-comment/DeleteComment";
 
-function CommentItem({item, setComments, comments}) {
-
-    const {user} = useSelector(state => state.userReducer);
-
-    const onCommentDelete = () => {
-        commentService.deleteComment(item.id)
-            .then(setComments(comments.filter(comment => comment.id !== item.id)))
-    }
-
+function CommentItem({item}) {
     return (
         <ListItem sx={{paddingRight: '0px'}} key={item.id} alignItems="flex-start">
             <ListItemAvatar>
@@ -35,12 +26,7 @@ function CommentItem({item, setComments, comments}) {
                 }
             />
             {
-                item.user.id === user?.id && (
-                    <AlertDelete
-                        text={'Вы действительно хотите удалить комментарий? Отменить это действие будет невозможно'}
-                        confirm={onCommentDelete}
-                    />
-                )
+                isMyItem(item) && <DeleteComment item={item} />
             }
         </ListItem>
     );
