@@ -8,17 +8,24 @@ const useStyles = makeStyles({
         boxShadow: '0 10px 30px #CECECEFF'
     },
     button: {
-        backgroundColor: '#3f51b5',
+        backgroundColor: '#21ba45',
+        '&:hover': {
+            backgroundColor: '#21ba45'
+        },
         height: '48px',
+        minHeight: '52px',
         color: '#fff',
-        width: '100%',
+        width: '30%',
         border: 'none',
         fontSize: '1rem',
         fontWeight: 600,
-        marginTop: 15,
-        borderRadius: '10px',
+        margin: '0 auto',
         padding: '10px 0 10px 0',
         textTransform: 'none',
+    },
+    fileContainer: {
+        display: "flex",
+        justifyContent: 'center'
     },
     image: {
         width: '100%',
