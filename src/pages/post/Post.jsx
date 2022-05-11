@@ -27,7 +27,7 @@ function Post() {
     return (
         <React.Fragment>
             <Container className={classes.container} maxWidth={'lg'}>
-                <PostContainer currentPost={currentPost} classes={classes} />
+                <PostContainer currentPost={currentPost} />
                 <RightBar classes={classes} currentPost={currentPost} coordinates={coordinates} />
             </Container>
             <PostComments pageSize={10} currentPost={currentPost} classes={classes} />
