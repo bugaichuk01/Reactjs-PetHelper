@@ -7,59 +7,69 @@ import {Placemark} from "react-yandex-maps";
 import {useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import Text from "../text/Text";
-import Share from "./share/Share";
+import checkStatus from "../../../_utils/checkStatus";
 
 function RightBar({classes, currentPost, coordinates}) {
     const {user} = useSelector(state => state.userReducer);
 
     return (
-        <Container className={classes.rightBar}>
-            <Typography className={classes.mapText} variant={'subtitle1'}>
-                Контакты и место, где в последний раз видели питомца:
-            </Typography>
+        <Box sx={{display: 'flex', flexDirection: 'column', width: '24%'}}>
+            <Container className={classes.rightBar}>
+                <Typography className={classes.mapText} variant={'subtitle1'}>
+                    Контакты
+                </Typography>
 
-            <Box className={classes.contacts}>
-                <Avatar sx={{marginRight: '10px'}} alt="Remy Sharp" src="/static/images/avatar/1.jpg"/>
-                <Typography className={classes.text} variant={'subtitle1'}>
-                    {currentPost?.user?.name}
+                <Box className={classes.contacts}>
+                    <Avatar sx={{marginRight: '10px'}} variant={'circular'} alt="Remy Sharp"
+                            src="/static/images/avatar/1.jpg"/>
+                    <Typography className={classes.text} variant={'subtitle1'}>
+                        {currentPost?.user?.name}
+                    </Typography>
+                </Box>
+                <Divider/>
+                <Box className={classes.contacts}>
+                    <Text text={`Номер:`}/>
+                    <Typography className={classes.text} variant={'subtitle1'}>
+                        {user ? currentPost?.user?.mobileNumber :
+                            <Link to={'/login'}>{currentPost?.user?.mobileNumber.slice(0, 2) + '*********'}</Link>}
+                    </Typography>
+                </Box>
+                <Divider/>
+                <Box className={classes.contacts}>
+                    <Text text={`Почта:`}/>
+                    <Typography className={classes.text} variant={'subtitle1'}>
+                        {currentPost?.user?.email}
+                    </Typography>
+                </Box>
+                <Divider/>
+            </Container>
+            <Container className={classes.rightBar}>
+                <Typography className={classes.mapText} variant={'subtitle1'}>
+                    {checkStatus(currentPost.status, 'Место, где питомец был потерян', 'Место, где нашли питомца')}
                 </Typography>
-            </Box>
-            <Divider/>
-            <Box className={classes.contacts}>
-                <Text text={`Номер для связи:`}/>
-                <Typography className={classes.text} variant={'subtitle1'}>
-                    {user ? currentPost?.user?.mobileNumber :
-                        <Link to={'/login'}>{currentPost?.user?.mobileNumber.slice(0, 2) + '*********'}</Link>}
-                </Typography>
-            </Box>
-            <Divider/>
-            <Box className={classes.contacts}>
-                <Text text={`Почта автора:`}/>
-                <Typography className={classes.text} variant={'subtitle1'}>
-                    {currentPost?.user?.email}
-                </Typography>
-            </Box>
-            <Divider/>
-            <Box className={classes.contacts}>
-                <Text text={`Вознагражение:`}/>
-                <Typography className={classes.text} variant={'subtitle1'}>
-                    {currentPost?.award}
-                </Typography>
-            </Box>
 
-            <YMap
-                defaultState={{center: coordinates, zoom: 12}}
-                classes={classes.map}
-            >
-                <Placemark geometry={coordinates}/>
-            </YMap>
-            <Share currentPost={currentPost} />
-            {
+                <Box>
+                    <Box className={classes.map}>
+                        <YMap
+                            defaultState={{
+                                center: coordinates,
+                                zoom: 12,
+                                controls: ['zoomControl', 'fullscreenControl']
+                            }}
+                        >
+                            <Placemark geometry={coordinates}/>
+                        </YMap>
+                    </Box>
+                    <Typography className={classes.mapPosition}
+                                textAlign={'center'}>{currentPost?.address?.address}</Typography>
+                </Box>
+                {/*            {
                 isMyItem(currentPost) && (
                     <DeletePost currentPost={currentPost}/>
                 )
-            }
-        </Container>
+            }*/}
+            </Container>
+        </Box>
     );
 }
 
