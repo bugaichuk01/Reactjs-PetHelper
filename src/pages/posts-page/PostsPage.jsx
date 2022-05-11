@@ -6,7 +6,7 @@ import GoBack from "../../components/button/go-back/GoBack";
 
 function PostsPage() {
     return (
-        <Container>
+        <Container maxWidth={'xl'}>
             <GoBack />
             <Posts items={3} />
         </Container>
