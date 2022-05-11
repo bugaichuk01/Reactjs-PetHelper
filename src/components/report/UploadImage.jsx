@@ -1,4 +1,5 @@
 import {Container, Input, Typography, Button} from "@mui/material";
+import PhotoCameraRoundedIcon from '@mui/icons-material/PhotoCameraRounded';
 
 function UploadImage({setPostImage, classes, postImage}) {
     return (
@@ -16,7 +17,7 @@ function UploadImage({setPostImage, classes, postImage}) {
                     <img className={classes.image} src={URL.createObjectURL(postImage)} alt=""/>
                 )
             }
-            <label htmlFor="contained-button-file">
+            <label className={classes.fileContainer} htmlFor="contained-button-file">
                 <Input
                     id="contained-button-file"
                     sx={{display: 'none !important'}}
@@ -28,12 +29,13 @@ function UploadImage({setPostImage, classes, postImage}) {
                     multiple
                     type="file"/>
                 <Button
+                    sx={{marginTop: '15px !important'}}
                     fullWidth
                     className={classes.button}
                     variant="contained"
                     component="span"
                 >
-                    Выбрать фото
+                    <PhotoCameraRoundedIcon sx={{marginRight: '15px'}} />Выбрать фото
                 </Button>
             </label>
         </Container>
