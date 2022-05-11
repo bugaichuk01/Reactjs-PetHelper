@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {
+    Button,
     Container, Divider,
     List,
     Pagination,
     Stack,
 } from "@mui/material";
-import {Button, TextField} from "@material-ui/core";
+import {TextField} from "@material-ui/core";
 import _ from "lodash";
 import CommentItem from "../comment-item/CommentItem";
 import {useDispatch, useSelector} from "react-redux";
@@ -15,7 +16,7 @@ import {getComments, postComment} from "../../../store/actions/comment";
 function PostComments({pageSize, currentPost, classes}) {
     const dispatch = useDispatch();
 
-    const [paginated, setPaginated] = useState();
+    const [paginated, setPaginated] = useState([]);
     const [value, setValue] = useState('');
 
     const {comments, isFetching} = useSelector(state => state.commentReducer);
