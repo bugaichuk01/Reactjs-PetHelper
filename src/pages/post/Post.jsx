@@ -9,6 +9,7 @@ import 'moment/locale/ru';
 import PostContainer from "../../components/post-page/post-container/PostContainer";
 import PostComments from "../../components/post-page/post-comments/PostComments";
 import RightBar from "../../components/post-page/right-bar/RightBar";
+import PostInfo from "../../components/post-page/post-info/PostInfo";
 
 function Post() {
     const classes = useStyles();
@@ -28,6 +29,7 @@ function Post() {
         <React.Fragment>
             <Container className={classes.container} maxWidth={'lg'}>
                 <PostContainer currentPost={currentPost} />
+                <PostInfo currentPost={currentPost} />
                 <RightBar classes={classes} currentPost={currentPost} coordinates={coordinates} />
             </Container>
             <PostComments pageSize={10} currentPost={currentPost} classes={classes} />
