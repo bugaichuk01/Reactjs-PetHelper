@@ -14,6 +14,13 @@ const getById = async (id) => {
     })
 }
 
+const getMyPosts = async () => {
+    return await axios.get(`/api/animal/getMyPosts`, {headers: authHeader()})
+        .catch(error => {
+            console.error(error)
+        });
+}
+
 const addReport = async (data) => {
     return axios.post('/api/animal/add', data,
         {headers: authHeader()})
@@ -55,5 +62,7 @@ export default {
     addReport,
     postImage,
     getAvatar,
-    deletePost
+    deletePost,
+    getMyPosts
+
 }
