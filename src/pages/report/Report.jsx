@@ -4,12 +4,12 @@ import BasicInfo from "../../components/report/BasicInfo";
 import UploadImage from "../../components/report/UploadImage";
 import Details from "../../components/report/Details";
 import postService from "../../_services/post.service";
-import {Box, CircularProgress, Container} from "@mui/material";
+import {Box, Button, CircularProgress, Container} from "@mui/material";
 import {Link} from "react-router-dom";
 import SimpleAlert from "../../components/alerts/SimpleAlert";
 import useFormData from "../../_hooks/useFormData";
 import GoBack from "../../components/button/go-back/GoBack";
-
+import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
 
 function Report() {
     const classes = useStyles();
@@ -54,8 +54,7 @@ function Report() {
     }
     return (
         <Container maxWidth={'md'}>
-
-            <GoBack />
+            <GoBack/>
             {status === 'error' && (
                 <React.Fragment>
                     <SimpleAlert
@@ -97,7 +96,8 @@ function Report() {
                     <UploadImage onChange={onChange} classes={classes} postImage={postImage}
                                  setPostImage={setPostImage}/>
                     <Details onChange={onChange} classes={classes} formData={formData} setFormData={setFormData}/>
-                    <button className={classes.button} type={'submit'}>Опубликовать</button>
+                    <Button sx={{marginTop: '15px !important'}} className={classes.button}
+                            type={'submit'}>Опубликовать <ArrowForwardRoundedIcon sx={{marginLeft: '15px'}}/></Button>
                 </form>
             )}
         </Container>
