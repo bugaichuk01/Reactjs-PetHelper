@@ -9,7 +9,9 @@ function YMap({setCoordinates, classes, children, defaultState}) {
             <Map
                 onClick={onClickMap}
                 className={classes}
-                defaultState={defaultState}>
+                defaultState={defaultState}
+                modules={['control.ZoomControl', 'control.FullscreenControl']}
+            >
                 {children}
             </Map>
         </YMaps>
