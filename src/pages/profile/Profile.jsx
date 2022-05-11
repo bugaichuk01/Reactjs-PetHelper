@@ -18,6 +18,7 @@ function Profile() {
                     <ProfileCard
                         text={'Просматривайте и управляйте вашими объявлениями'}
                         icon={<AssignmentIcon color={'disabled'} fontSize={'large'}/>}
+                        link={'/profile/myPosts'}
                     />
                     <ProfileCard
                         text={'Редактируйте свой профиль и данные учетной записи'}
