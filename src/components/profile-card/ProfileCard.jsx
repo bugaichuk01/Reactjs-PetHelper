@@ -13,7 +13,15 @@ function ProfileCard({text, icon, link}) {
             </CardContent>
             <CardActions sx={{display: 'flex', justifyContent: 'center'}}>
                 <Link to={`${link}`}>
-                    <Button size="small">Перейти</Button>
+                    <Button sx={{
+                        textTransform: 'none',
+                        padding: '5px 20px 5px 20px',
+                        backgroundColor: '#fbc866',
+                        color: '#000',
+                        '&:hover': {
+                            backgroundColor: '#fbc866'
+                        }
+                    }}>Перейти</Button>
                 </Link>
             </CardActions>
         </Card>
