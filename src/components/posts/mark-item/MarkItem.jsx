@@ -33,16 +33,16 @@ function MarkItem({post}) {
     return (
         <div>
             <Placemark
-                options={post.status === 'Потерян' &&{
-                     iconColor: '#ea0000'
+                options={post.status === 'Потерян' && {
+                    iconColor: '#ea0000'
                 }}
                 properties={{
-                balloonContentHeader: balloonContentHeader({post}),
-                balloonContentBody: balloonContentBody({post})
-            }}
-                       modules={['geoObject.addon.balloon', 'geoObject.addon.hint']}
-                       key={post.id}
-                       geometry={[post?.address?.y, post?.address?.x]}
+                    balloonContentHeader: balloonContentHeader({post}),
+                    balloonContentBody: balloonContentBody({post})
+                }}
+                modules={['geoObject.addon.balloon', 'geoObject.addon.hint']}
+                key={post.id}
+                geometry={[post?.address?.y, post?.address?.x]}
 
             />
         </div>
