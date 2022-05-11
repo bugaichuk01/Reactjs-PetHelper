@@ -19,7 +19,10 @@ const useStyles = makeStyles({
         marginBottom: 20
     },
     button: {
-        backgroundColor: '#3f51b5',
+        backgroundColor: '#1c576c',
+        '&:hover': {
+            backgroundColor: '#1c576c',
+        },
         color: '#fff',
         fontSize: '1rem',
         fontWeight: 600,
