@@ -19,7 +19,7 @@ body {
 }
 
 .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-    border-color: #3f51b5 !important;
+    border-color: #00abb6 !important;
 }
 
 .MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
@@ -37,7 +37,7 @@ body {
 }
 
 .MuiFormLabel-root.Mui-focused {
-    color: #3f51b5 !important;
+    color: #00abb6 !important;
 }
 
 .MuiFormLabel-root.Mui-error {
