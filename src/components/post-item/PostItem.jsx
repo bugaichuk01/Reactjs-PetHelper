@@ -1,23 +1,44 @@
-import styles from './PostItem.module.css';
-import cn from 'classnames';
-import moment from 'moment';
+import React from 'react';
+import {Link} from "react-router-dom";
+import {ImageListItem, ImageListItemBar, Typography} from "@mui/material";
+import moment from "moment";
+import 'moment/locale/ru';
+import useStyles from "./PostItemStyles";
+import useScreenSize from "../../_hooks/useScreenSize";
+import {Box} from "@material-ui/core";
+import checkStatus from "../../_utils/checkStatus";
 
-function PostItem({post}) {
-
+function PostItem({id, breed, name, status, eventDate, links, species}) {
+    const classes = useStyles();
+    const drawerActivate = useScreenSize();
     return (
-        <li className={styles.list__item} key={post.id}>
-            <img className={styles.list__img} src={post.photos ? post.photos : require('../../images/defaultPostImage.jpeg')} alt=""/>
-            <div>
-                <span className={styles.list__name}>{post.name}</span>
-                <span
-                    className={
-                    post.status === 'lost'
-                        ? cn(styles.list__status, styles.list__status_lost)
-                        : cn(styles.list__status, styles.list__status_found)}>{post.status}</span>
-            </div>
-            <span className={styles.list__name}>{post.breed}</span>
-            <span className={styles.list__name}>{moment(post.Date).format('LT')}</span>
-        </li>
+        <Link className={classes.listItem} to={`/posts/${id}`}>
+            <ImageListItem key={id}>
+                <div>
+                    <Box
+                        sx={{backgroundColor: checkStatus(status, '#f2711c', '#b5cc18')}}
+                        className={classes.status}
+                    >
+                        <Typography sx={{fontWeight: 700, fontSize: '15px'}}
+                                    variant={'subtitle2'}>{status}</Typography>
+                    </Box>
+                    <img
+                        src={links?.[2]?.href}
+                        alt={breed}
+                        loading="lazy"
+                        className={drawerActivate ? classes.imageSmall : classes.image}
+                    />
+                </div>
+                <ImageListItemBar
+                    title={<Typography className={classes.topText} variant='subtitle2'>{species} по кличке
+                        «{name}»</Typography>}
+                    subtitle={<Typography className={classes.bottomText}
+                        variant='body2'>{status}: {moment(eventDate).format('MMMM Do YYYY')}</Typography>}
+                    position="below"
+                    className={classes.itemBar}
+                />
+            </ImageListItem>
+        </Link>
     );
 }
 

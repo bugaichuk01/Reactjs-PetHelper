@@ -1,72 +1,106 @@
-import React, {useEffect, useState} from 'react';
-import Header from "../../components/header/Header";
-import styles from './Report.module.css'
-import UiInput from "../../components/UI/UIInput/UIInput"
+import React, {useCallback, useState} from 'react';
+import useStyles from './ReportStyles';
+import BasicInfo from "../../components/report/BasicInfo";
+import UploadImage from "../../components/report/UploadImage";
+import Details from "../../components/report/Details";
+import postService from "../../_services/post.service";
+import {Box, Button, CircularProgress, Container} from "@mui/material";
+import {Link} from "react-router-dom";
+import SimpleAlert from "../../components/alerts/SimpleAlert";
+import useFormData from "../../_hooks/useFormData";
+import GoBack from "../../components/button/go-back/GoBack";
+import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
 
 function Report() {
-    const [report, setReport] = useState(true);
-    const [status, setStatus] = useState('');
-    const [formData, setFormData] = useState({
-        gender: '',
-        name: '',
+    const classes = useStyles();
+    const [postImage, setPostImage] = useState('');
+    const [status, setStatus] = useState(null);
+    const {formData, setFormData, onChange} = useFormData({
+        name: '-',
+        status: '',
+        species: 'Кошка',
         breed: '',
-        description: ''
-    });
+        gender: '',
+        description: '-',
+        eventDate: null,
+        address: {
+            address: '',
+            x: '',
+            y: ''
+        },
+        castration: 'Неизвестно',
+        age: 'Неизвестно',
+        health: '',
+        award: '-'
+    })
 
-    const {gender, name, breed, description} = formData;
+    const sendFile = useCallback((id) => {
+        const data = new FormData();
+        data.append('file', postImage);
+        data.append('id', id);
 
-    const onChange = (event) => setFormData({...formData, [event.target.name]: event.target.value});
+        postService.postImage(data);
+    }, [postImage])
 
-    const onSubmit = async (e) => {
-      e.preventDefault();
-      /*await API.addReport(status, gender, name, breed, description);
-      setFormData({
-          gender: '',
-          name: '',
-          breed: '',
-          description: ''
-      });*/
+    const onSubmit = (e) => {
+        setStatus('loading');
+        e.preventDefault();
+        postService.addReport(formData).then(r => {
+            postImage &&
+            sendFile(r.data.id);
+            setStatus(r.status);
+        })
+            .catch(err => setStatus('error'));
     }
-
-    useEffect(() => {
-        report ? setStatus('found') : setStatus('lost') ;
-    }, [report])
-
     return (
-        <div>
-            <Header/>
-            <div>
-                <div className={styles.select__wrapper}>
-                    <button className={report ? styles.button__select_active : styles.button__select} onClick={() => setReport(true)}>I found a pet</button>
-                    <button className={report ? styles.button__select : styles.button__select_active} onClick={() => setReport(false)}>I lost a pet</button>
-                </div>
-                {
-                    report && (
-                        <form className={styles.report__wrapper} onSubmit={onSubmit}>
-                            <UiInput value={formData.name} name='name' placeholder='Pet name (If known)' onChange={onChange} />
-                            {/*<UIButton placeholder='Last area seen' />*/}
-                            <UiInput value={formData.breed} name='breed'  placeholder='Pet breed' onChange={onChange}  />
-                            <UiInput value={formData.gender} name='gender'  placeholder='Pet gender' onChange={onChange}  />
-                            <UiInput value={formData.description} name='description'  placeholder='Description' onChange={onChange}  />
-                            <button className={styles.button__submit}>Submit</button>
-                        </form>
-                    )
-                }
-
-                {
-                    !report && (
-                        <form className={styles.report__wrapper}>
-                            <UiInput value={formData.name} name='name' placeholder='Pet name (If known)' onChange={onChange} />
-                            {/*<UIButton placeholder='Last area seen' />*/}
-                            <UiInput value={formData.breed} name='breed'  placeholder='Pet breed' onChange={onChange}  />
-                            <UiInput value={formData.gender} name='gender'  placeholder='Pet gender' onChange={onChange}  />
-                            <UiInput value={formData.description} name='description'  placeholder='Description' onChange={onChange}  />
-                            <button className={styles.button__submit}>Submit</button>
-                        </form>
-                    )
-                }
-            </div>
-        </div>
+        <Container maxWidth={'md'}>
+            <GoBack/>
+            {status === 'error' && (
+                <React.Fragment>
+                    <SimpleAlert
+                        sx={{marginTop: '15px'}}
+                        severity={'error'}
+                        title={'Ошибка!'}
+                        text={'Ваше объявление не было создано, повторите попытку позже.'}
+                    />
+                    <div style={{textAlign: 'center', marginTop: '10px'}}>
+                        <Link to={'/'}>
+                            Главная страница
+                        </Link>
+                    </div>
+                </React.Fragment>
+            )}
+            {status === 'loading' && (
+                <Box sx={{textAlign: 'center'}}>
+                    <CircularProgress/>
+                </Box>
+            )}
+            {status === 201 && (
+                <React.Fragment>
+                    <SimpleAlert
+                        sx={{marginTop: '50px'}}
+                        severity={'success'}
+                        title={'Объявление создано!'}
+                        text={'Ваше объявление создано, вы можете просмотреть его в профиле и на главной странице сайта.'}
+                    />
+                    <div style={{textAlign: 'center', marginTop: '10px'}}>
+                        <Link to={'/'}>
+                            Главная страница
+                        </Link>
+                    </div>
+                </React.Fragment>
+            )}
+            {status === null && (
+                <form onSubmit={onSubmit}>
+                    <BasicInfo onChange={onChange} classes={classes} formData={formData} setFormData={setFormData}/>
+                    <UploadImage onChange={onChange} classes={classes} postImage={postImage}
+                                 setPostImage={setPostImage}/>
+                    <Details onChange={onChange} classes={classes} formData={formData} setFormData={setFormData}/>
+                    <Button sx={{marginTop: '15px !important'}} className={classes.button}
+                            type={'submit'}>Опубликовать <ArrowForwardRoundedIcon sx={{marginLeft: '15px'}}/></Button>
+                </form>
+            )}
+        </Container>
     );
 }
 

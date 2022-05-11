@@ -1,28 +1,28 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {login} from "../../store/actions/user";
 import {
-    Box, Button, Container, Divider,
+    Box, Container, Divider,
     TextField, Typography
 } from "@material-ui/core";
-import useStyles from './AuthStyles';
 import {Link} from "react-router-dom";
+import useStyles from './AuthStyles';
+import useFormData from "../../_hooks/useFormData";
+import SimpleAlert from "../../components/alerts/SimpleAlert";
+import {Button} from "@mui/material";
 
 const Login = () => {
     const classes = useStyles();
-    const dispatch = useDispatch();
-    const {error} = useSelector(state => state.userReducer)
-    const [formData, setFormData] = useState({
+    const {formData, onChange} = useFormData({
         username: '',
         password: '',
-    });
-    const {username, password} = formData;
-
-    const onChange = (event) => setFormData({...formData, [event.target.name]: event.target.value});
+    })
+    const dispatch = useDispatch();
+    const {error} = useSelector(state => state.userReducer)
 
     const onSubmit = (e) => {
         e.preventDefault();
-        dispatch(login(username, password));
+        dispatch(login(formData.username, formData.password));
     }
 
     return (
@@ -35,12 +35,12 @@ const Login = () => {
                 <Typography
                     className={classes.welcome}
                     variant={"subtitle1"}>
-                    Welcome back to PetHelper
+                    PetHelper
                 </Typography>
                 <Typography
                     className={classes.description}
                     variant={"body2"}>
-                    Sign in to continue
+                    Войдите, чтобы продолжить
                 </Typography>
                 <form onSubmit={onSubmit}>
                     <TextField
@@ -57,26 +57,37 @@ const Login = () => {
                         required
                         error={!!error}
                         variant='outlined'
-                        label='Password'
+                        label='Пароль'
                         name='password'
                         type='password'
                         onChange={onChange}
                     />
+
+                    {
+                        error &&
+                        <SimpleAlert
+                            sx={{marginTop: '10px', textAlign: 'start'}}
+                            severity='error'
+                            title={'Ошибка авторизации'}
+                            text={'Юзернейм или пароль введены некорректно.'}
+                        />
+                    }
+
                     <Button
                         fullWidth
                         variant="contained"
                         className={classes.button}
                         type='submit'
                     >
-                        Sign In
+                        Войти
                     </Button>
                 </form>
                 <Divider className={classes.divider}/>
                 <Typography className={classes.links} variant='body2'>
-                    <Link className={classes.link} to='/'>Forgot your password?</Link>
+                    <Link className={classes.link} to='/forgetPass'>Забыли пароль?</Link>
                 </Typography>
-                <Typography className={classes.links} variant='body2'>Don't have an account?
-                    <Link className={classes.link} to='/register'> Register</Link>
+                <Typography className={classes.links} variant='body2'>Не зарегестрированы в системе?
+                    <Link className={classes.link} to='/register'> Регистрация</Link>
                 </Typography>
             </Box>
         </Container>

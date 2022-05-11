@@ -1,24 +1,38 @@
 import axios from "axios";
 
-const register = async (username, email, password) => {
-    return axios.post('/api/user/add', {
-        "username": username,
-        "email": email,
-        "password": password
-    }).then(response => response.data)
+const register = async (data) => {
+    return axios.post('/api/user/add',
+        data
+    )
+        .then(response => response.data)
+        .catch(error => {
+            console.error(error)
+        })
 };
 
-const login = (username, password) => {
-    return axios.post('/api/auth/login', {
-            "username": username,
-            "password": password
-        }).then(response => {
-            if (response.data.token) {
-                localStorage.setItem("token", JSON.stringify(response.data.token));
-                localStorage.setItem("user", JSON.stringify(response.data.user));
-            }
-            return response.data.user;
-        });
+const login = async (username, password) => {
+    return await axios.post('/api/auth/login', {
+        "username": username,
+        "password": password
+    }).then(response => {
+        if (response.data.token) {
+            localStorage.setItem("token", JSON.stringify(response.data.token));
+            localStorage.setItem("user", JSON.stringify(response.data.user));
+        }
+        return response.data.user;
+    })
+};
+
+const activate = async (code) => {
+    return await axios.post(`/api/user/activation/${code}`)
+};
+
+const forget = async (email) => {
+    return await axios.post(`/api/user/forgetPassword/?email=${email}`)
+};
+
+const changePassword = async (code, password) => {
+    return await axios.post(`/api/user/changePassword/${code}`, {"password": password})
 };
 
 const logout = () => {
@@ -30,4 +44,7 @@ export default {
     register,
     login,
     logout,
+    activate,
+    forget,
+    changePassword
 };
