@@ -1,16 +1,21 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {Autocomplete} from "@mui/material";
 import {TextField} from "@material-ui/core";
 import mapService from "../../_services/map.service";
+import debounce from 'lodash.debounce';
 
 function AddressInput({address, coordinates, setCoordinates, setFormData, formData}) {
     const [places, setPlaces] = useState([]);
     const [locationDuplicate, setLocationDuplicate] = useState('');
 
-    const onPlacesChange = async (e) => {
+    const onPlacesChange = (e) => {
         e.target.value.length >= 3 && mapService.searchLocation(e.target.value)
             .then(res => setPlaces(res.data.features));
     }
+
+    const debouncedChangeHandler = useCallback(
+        debounce(onPlacesChange, 300)
+        , []);
 
     useEffect(() => {
         coordinates && coordinates.length !== 0 && mapService.geocode(coordinates.reverse())
@@ -37,17 +42,18 @@ function AddressInput({address, coordinates, setCoordinates, setFormData, formDa
 
     return (
         <Autocomplete
+            fullWidth
             id="free-solo-demo"
             value={address?.address}
             isOptionEqualToValue={(option, value) => option.value === value.value}
             onChange={(e, value) => onPlacesConfirm(e, value)}
-            options={places.map(item => (item.properties.description ? `${item.properties.description}, ` : '') + item.properties.name)}
+            options={places.map(item => (item?.properties?.description ? `${item?.properties?.description}, ` : '') + item?.properties?.name)}
             renderInput={(params) =>
                 <TextField
                     variant={'outlined'}
                     value={address?.address}
                     required
-                    onChange={onPlacesChange}
+                    onChange={debouncedChangeHandler}
                     name='location'
                     {...params}
                     label={'Адрес'}/>
