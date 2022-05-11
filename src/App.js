@@ -17,6 +17,7 @@ import Header from "./components/header/Header";
 import React from "react";
 import ForgetPassword from "./pages/auth/ForgetPassword";
 import ChangePassword from "./pages/auth/ChangePassword";
+import MyPosts from "./pages/my-posts/MyPosts";
 
 function App() {
     const {user} = useSelector(state => state.userReducer);
@@ -42,6 +43,7 @@ function App() {
                 <Route path="/unknown" element={<Unknown/>}/>
                 <Route path="/profile" element={user ?  <Profile/> : <Navigate replace to='/'/>}/>
                 <Route path="/profile/edit" element={user ? <ProfileEdit/> : <Navigate replace to='/'/>}/>
+                <Route path="/profile/myPosts" element={user ? <MyPosts/> : <Navigate replace to='/'/>}/>
                 <Route path="/admin-panel" element={user?.role === 'ADMIN' && <AdminPanel/>}/>
             </Routes>
         </React.Fragment>

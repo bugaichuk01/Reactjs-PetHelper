@@ -28,6 +28,7 @@
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
+    "react-share": "^4.4.0",
     "react-use": "^17.3.2",
     "react-use-form-state": "^0.13.2",
     "react-yandex-maps": "^4.6.0",
