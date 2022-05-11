@@ -15,6 +15,7 @@ import {
     WhatsappShareButton
 } from "react-share";
 import {useLocation} from "react-use";
+import checkStatus from "../../../_utils/checkStatus";
 
 function Share({currentPost}) {
     const sampleLocation = useLocation();
@@ -25,9 +26,7 @@ function Share({currentPost}) {
             <Box sx={{alignItems: 'center', display: 'flex', flexDirection: 'column'}}>
                 <VKShareButton
                     url={sampleLocation.href}
-                    title={currentPost.status === 'Потерян'
-                        ? 'Вы не видели этого питомца?'
-                        : 'Найден питомец!'}
+                    title = {checkStatus(currentPost?.status, 'Вы не видели этого питомца?', 'Найден питомец!')}
                     image={currentPost?._links?.photoLink?.href}
                 >
                     <VKIcon size={32} round={true}/>
@@ -36,36 +35,28 @@ function Share({currentPost}) {
 
             <TelegramShareButton
                 url={sampleLocation.href}
-                title={currentPost.status === 'Потерян'
-                    ? 'Вы не видели этого питомца?'
-                    : 'Найден питомец!'}
+                title = {checkStatus(currentPost?.status, 'Вы не видели этого питомца?', 'Найден питомец!')}
             >
                 <TelegramIcon size={32} round={true}/>
             </TelegramShareButton>
 
             <WhatsappShareButton
                 url={sampleLocation.href}
-                title={currentPost.status === 'Потерян'
-                    ? 'Вы не видели этого питомца?'
-                    : 'Найден питомец!'}
+                title = {checkStatus(currentPost?.status, 'Вы не видели этого питомца?', 'Найден питомец!')}
             >
                 <WhatsappIcon size={32} round={true}/>
             </WhatsappShareButton>
 
             <OKShareButton
                 url={sampleLocation.href}
-                title={currentPost.status === 'Потерян'
-                    ? 'Вы не видели этого питомца?'
-                    : 'Найден питомец!'}
+                title = {checkStatus(currentPost?.status, 'Вы не видели этого питомца?', 'Найден питомец!')}
             >
                 <OKIcon size={32} round={true}/>
             </OKShareButton>
 
             <MailruShareButton
                 url={sampleLocation.href}
-                title={currentPost.status === 'Потерян'
-                    ? 'Вы не видели этого питомца?'
-                    : 'Найден питомец!'}
+                title = {checkStatus(currentPost?.status, 'Вы не видели этого питомца?', 'Найден питомец!')}
                 image={currentPost?._links?.photoLink?.href}
             >
                 <MailruIcon size={32} round={true}/>
@@ -73,18 +64,14 @@ function Share({currentPost}) {
 
             <EmailShareButton
                 url={sampleLocation.href}
-                title={currentPost.status === 'Потерян'
-                    ? 'Вы не видели этого питомца?'
-                    : 'Найден питомец!'}
+                title = {checkStatus(currentPost?.status, 'Вы не видели этого питомца?', 'Найден питомец!')}
             >
                 <EmailIcon size={32} round={true}/>
             </EmailShareButton>
 
             <RedditShareButton
                 url={sampleLocation.href}
-                title={currentPost.status === 'Потерян'
-                    ? 'Вы не видели этого питомца?'
-                    : 'Найден питомец!'}
+                title = {checkStatus(currentPost?.status, 'Вы не видели этого питомца?', 'Найден питомец!')}
             >
                 <RedditIcon size={32} round={true}/>
             </RedditShareButton>
