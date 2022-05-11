@@ -27,7 +27,7 @@ const useStyles = makeStyles({
         width: '100%',
         objectFit: "cover",
 /*        height: '10vh'*/
-    }
+    },
 });
 
 export default useStyles;
