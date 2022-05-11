@@ -12,6 +12,7 @@ import CommentItem from "../comment-item/CommentItem";
 import {useDispatch, useSelector} from "react-redux";
 import SimpleAlert from "../../alerts/SimpleAlert";
 import {getComments, postComment} from "../../../store/actions/comment";
+import ForwardToInboxRoundedIcon from '@mui/icons-material/ForwardToInboxRounded';
 
 function PostComments({pageSize, currentPost, classes}) {
     const dispatch = useDispatch();
@@ -47,7 +48,7 @@ function PostComments({pageSize, currentPost, classes}) {
     }
 
     return (
-        <Container sx={{marginTop: '20px', marginBottom: '100px'}} maxWidth={'lg'}>
+        <Container sx={{marginTop: '20px', marginBottom: '100px', padding: '0 !important'}} maxWidth={'lg'}>
             <SimpleAlert
                 sx={{alignItems: 'center'}}
                 severity='info'
@@ -81,7 +82,7 @@ function PostComments({pageSize, currentPost, classes}) {
                         type='submit'
                         disabled={!user}
                     >
-                        Отправить
+                        <ForwardToInboxRoundedIcon sx={{marginRight: '5px'}} /> Отправить
                     </Button>
                 </form>
                 <List sx={{width: '100%'}}>
