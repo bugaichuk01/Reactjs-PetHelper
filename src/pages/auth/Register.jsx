@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Box, Button, Container, TextField, Typography} from "@material-ui/core";
+import {Box, Container, TextField, Typography} from "@material-ui/core";
 import useStyles from './AuthStyles';
 import {Link} from "react-router-dom";
 import AddressInput from "../../components/address-input/AddressInput";
@@ -9,6 +9,7 @@ import {useGeolocation} from "react-use";
 import useFormData from "../../_hooks/useFormData";
 import SimpleAlert from "../../components/alerts/SimpleAlert";
 import {Placemark} from "react-yandex-maps";
+import {Button} from "@mui/material";
 
 function Register() {
     const classes = useStyles();
