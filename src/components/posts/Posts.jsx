@@ -17,7 +17,7 @@ function Posts({items, children}) {
 
     const drawerActivate = useScreenSize();
     const dispatch = useDispatch();
-    const {posts, filtered} = useSelector(state => state.postsReducer);
+    const {filtered} = useSelector(state => state.postsReducer);
     const [display, setDisplay] = useState(true);
 
     useEffect(() => {
