@@ -7,7 +7,6 @@ function MyPosts() {
     const [myPosts, setMyPosts] = useState([]);
     useEffect(() => {
         postService.getMyPosts().then(r => setMyPosts(r.data));
-        console.log('useEffect working', myPosts)
     }, [])
 
     return (
