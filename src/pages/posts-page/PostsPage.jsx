@@ -8,7 +8,7 @@ function PostsPage() {
     return (
         <Container maxWidth={'xl'}>
             <GoBack />
-            <Posts items={3} />
+            <Posts items={4} />
         </Container>
     );
 }
