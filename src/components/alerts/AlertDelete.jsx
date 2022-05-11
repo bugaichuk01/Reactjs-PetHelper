@@ -15,7 +15,7 @@ function AlertDelete({confirm, text, icon, btnText}) {
         <div style={{alignSelf: 'center'}}>
             <Button
                 onClick={handleClickOpen}
-                color={'error'}
+                sx={{backgroundColor: '#e36f73'}}
                 variant='contained'
                 startIcon={icon}
                 fullWidth
