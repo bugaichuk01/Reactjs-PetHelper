@@ -13,20 +13,21 @@ import PetsIcon from '@mui/icons-material/Pets';
 import DrawerComp from "./Drawer";
 import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
+import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
+import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
+import AppRegistrationRoundedIcon from '@mui/icons-material/AppRegistrationRounded';
 
 const Header = () => {
     const {user} = useSelector(state => state.userReducer);
     const [value, setValue] = useState();
     const navigate = useNavigate();
     const theme = useTheme();
-    console.log(theme, value);
     const isMatch = useMediaQuery(theme.breakpoints.down("md"));
-    console.log(isMatch);
 
     return (
         <React.Fragment>
             <header style={{marginBottom: '100px'}}>
-                <AppBar sx={{background: "#063970"}}>
+                <AppBar sx={{background: "#1c576c"}}>
                     <Toolbar sx={isMatch && {justifyContent: 'space-between'}}>
                         <PetsIcon sx={{transform: "scale(2) !important"}}/>
                         <Typography sx={isMatch ? {fontSize: "2rem", paddingLeft: "10% !important"} : {
@@ -43,7 +44,7 @@ const Header = () => {
                             <>
                                 <Tabs
                                     sx={{marginLeft: "auto !important"}}
-                                    indicatorColor="secondary"
+                                    indicatorColor="primary"
                                     textColor="inherit"
                                     value={value}
                                     onChange={(e, value) => {
@@ -59,23 +60,47 @@ const Header = () => {
                                 {
                                     user
                                         ? (
-                                            <Button sx={{marginLeft: "auto !important"}}
+                                            <Button sx={{
+                                                marginLeft: "auto !important",
+                                                backgroundColor: '#fbc866',
+                                                color: '#000',
+                                                fontWeight: 700,
+                                                '&:hover': {
+                                                    backgroundColor: '#fbc866'
+                                                }
+                                            }}
                                                     onClick={() => navigate('/profile')}
                                                     variant="contained">
-                                                Профиль
+                                                <AccountCircleRoundedIcon sx={{marginRight: '10px'}}/> Профиль
                                             </Button>
                                         )
                                         : (
                                             <>
-                                                <Button sx={{marginLeft: "auto !important"}}
+                                                <Button sx={{
+                                                    marginLeft: "auto !important",
+                                                    backgroundColor: '#fbc866',
+                                                    color: '#000',
+                                                    fontWeight: 700,
+                                                    '&:hover': {
+                                                        backgroundColor: '#fbc866'
+                                                    }
+                                                }}
                                                         onClick={() => navigate('/login')}
                                                         variant="contained">
-                                                    Вход
+                                                    <LoginRoundedIcon sx={{marginRight: '10px'}}/>Вход
                                                 </Button>
-                                                <Button sx={{marginLeft: "10px !important"}}
+                                                <Button sx={{
+                                                    marginLeft: "10px !important",
+                                                    backgroundColor: '#fbc866',
+                                                    color: '#000',
+                                                    fontWeight: 700,
+                                                    '&:hover': {
+                                                        backgroundColor: '#fbc866'
+                                                    }
+                                                }}
                                                         onClick={() => navigate('/register')}
                                                         variant="contained">
-                                                    Регистрация
+                                                    <AppRegistrationRoundedIcon sx={{marginRight: '10px'}}/> Регистрация
                                                 </Button>
                                             </>
                                         )
