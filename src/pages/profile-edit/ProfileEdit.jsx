@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {TextField} from "@material-ui/core";
-import {Container, Divider} from "@mui/material";
+import {Box, Button, Container, Divider} from "@mui/material";
 import {useSelector} from "react-redux";
 import userService from "../../_services/user.service";
 import useStyles from "../report/ReportStyles";
@@ -99,10 +99,13 @@ function ProfileEdit() {
                         onChange={onChange}
                         value={formData?.mobileNumber}
                     />
-
-                    <AddressInput address={formData?.address} setFormData={setFormData} formData={formData}
-                                  coordinates={coordinates} setCoordinates={setCoordinates}/>
-
+                    <Box sx={{display: 'flex', alignItems: 'end'}}>
+                        <AddressInput address={formData?.address} setFormData={setFormData} formData={formData}
+                                      coordinates={coordinates} setCoordinates={setCoordinates}/>
+                        <Button sx={{marginLeft: '20px !important'}} className={classes.button} type={'submit'}>
+                            Обновить
+                        </Button>
+                    </Box>
                     <YMap
                         setCoordinates={setCoordinates}
                         classes={classes.map}
@@ -110,9 +113,6 @@ function ProfileEdit() {
                     >
                         <Placemark geometry={coordinates}/>
                     </YMap>
-                    <button className={classes.button} type={'submit'}>
-                        Обновить
-                    </button>
                 </form>
             </Container>
         </div>
