@@ -4,10 +4,11 @@ import isMyItem from "../../../_utils/isMyItem";
 import DeleteComment from "../../button/delete-comment/DeleteComment";
 
 function CommentItem({item}) {
+    console.log(item?.user?.username)
     return (
         <ListItem sx={{paddingRight: '0px'}} key={item.id} alignItems="flex-start">
             <ListItemAvatar>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg"/>
+                <Avatar alt={item?.user?.username.toUpperCase()} src={'noImage'} />
             </ListItemAvatar>
             <ListItemText
                 primary={item.user.username}

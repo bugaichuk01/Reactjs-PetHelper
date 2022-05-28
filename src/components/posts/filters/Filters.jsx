@@ -9,6 +9,9 @@ import useStyles from "../PostsStyles";
 function Filters({setDisplay, display}) {
     const classes = useStyles();
     const {formData, setFormData, onChange} = useFormData({
+        address: {
+            region: ''
+        },
         status: '',
         species: '',
         breed: '',

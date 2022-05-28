@@ -7,7 +7,7 @@ function YMap({setCoordinates, classes, children, defaultState}) {
     return (
         <YMaps>
             <Map
-                onClick={onClickMap}
+                onClick={setCoordinates && onClickMap}
                 className={classes}
                 defaultState={defaultState}
                 modules={['control.ZoomControl', 'control.FullscreenControl']}
@@ -19,3 +19,4 @@ function YMap({setCoordinates, classes, children, defaultState}) {
 }
 
 export default YMap;
+

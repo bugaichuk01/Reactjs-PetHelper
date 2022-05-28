@@ -11,7 +11,7 @@ import checkStatus from "../../../_utils/checkStatus";
 
 function RightBar({classes, currentPost, coordinates}) {
     const {user} = useSelector(state => state.userReducer);
-
+    
     return (
         <Box sx={{display: 'flex', flexDirection: 'column', width: '24%'}}>
             <Container className={classes.rightBar}>
@@ -20,8 +20,7 @@ function RightBar({classes, currentPost, coordinates}) {
                 </Typography>
 
                 <Box className={classes.contacts}>
-                    <Avatar sx={{marginRight: '10px'}} variant={'circular'} alt="Remy Sharp"
-                            src="/static/images/avatar/1.jpg"/>
+                    <Avatar sx={{marginRight: '10px'}} alt={user?.username.toUpperCase()} src={'noImage'} />
                     <Typography className={classes.text} variant={'subtitle1'}>
                         {currentPost?.user?.name}
                     </Typography>

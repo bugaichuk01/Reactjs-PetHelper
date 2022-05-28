@@ -13,22 +13,22 @@ function AddressInput({address, coordinates, setCoordinates, setFormData, formDa
             .then(res => setPlaces(res.data.features));
     }
 
-    const debouncedChangeHandler = useCallback(
-        debounce(onPlacesChange, 300)
-        , []);
-
     useEffect(() => {
         coordinates && coordinates.length !== 0 && mapService.geocode(coordinates.reverse())
             .then(r =>
                 setFormData({
                     ...formData,
                     address: {
-                        address: `${r.data.response.GeoObjectCollection.featureMember[0].GeoObject.name} ${r.data.response.GeoObjectCollection.featureMember[0].GeoObject.description}`,
+                        address: `${r.data.response.GeoObjectCollection.featureMember[0].GeoObject.name}, ${r.data.response.GeoObjectCollection.featureMember[0].GeoObject.description}`,
                         x: coordinates[0].toString(),
                         y: coordinates[1].toString()
                     }
                 }))
     }, [coordinates])
+
+    const debouncedChangeHandler = useCallback(
+        debounce(onPlacesChange, 300)
+        , []);
 
     useEffect(() => {
         locationDuplicate && mapService.geocode(locationDuplicate)

@@ -21,6 +21,11 @@ const getMyPosts = async () => {
         });
 }
 
+const getRegions = async () => {
+    return await axios.get('/api/animal/getRegions')
+        .catch(error => console.log(error))
+}
+
 const addReport = async (data) => {
     return axios.post('/api/animal/add', data,
         {headers: authHeader()})
@@ -55,14 +60,23 @@ const deletePost = async (id) => {
         })
 }
 
+const searchPosts = async (text) => {
+    return await axios.get(`/api/animal/search?text=${text}`, {headers: authHeader()})
+        .catch(error => {
+            console.error(error)
+        })
+}
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
     getAll,
+    searchPosts,
     getById,
     addReport,
     postImage,
     getAvatar,
     deletePost,
-    getMyPosts
+    getMyPosts,
+    getRegions
 
 }

@@ -1,6 +1,5 @@
-import {FETCHING_POSTS, FILTER_POSTS, GET_POSTS} from "../constants/actionTypes";
+import {FETCHING_POSTS, FILTER_POSTS, GET_POSTS, SET_POSTS} from "../constants/actionTypes";
 import _ from 'lodash';
-import moment from "moment";
 
 const initialState = {
     posts: [],
@@ -29,6 +28,13 @@ export const postsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 filtered: _.filter(state.posts, action.payload),
+                isFetching: false,
+                error: false
+            };
+        case SET_POSTS:
+            return {
+                ...state,
+                filtered: action.payload,
                 isFetching: false,
                 error: false
             };

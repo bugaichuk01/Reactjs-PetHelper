@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Autocomplete} from "@mui/material";
 import {filterPosts} from "../../../../store/actions/posts";
 import {TextField} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
+import postService from "../../../../_services/post.service";
 
 function InputFilters({formData, setFormData, onChange}) {
     const {filtered, posts} = useSelector(state => state.postsReducer);
+    const [regions, setRegions] = useState([]);
     const dispatch = useDispatch();
 
     const mapItems = (arr, item) => {
@@ -14,6 +16,9 @@ function InputFilters({formData, setFormData, onChange}) {
             .indexOf(post) === pos);
     };
 
+    useEffect(() => {
+        postService.getRegions().then(r => setRegions(r.data))
+    }, [regions])
 
     return (
         <React.Fragment>
@@ -55,6 +60,26 @@ function InputFilters({formData, setFormData, onChange}) {
                         name='breed'
                         {...params}
                         label="Порода"/>
+                }
+            />
+
+            <Autocomplete
+                id="free-solo-demo"
+                isOptionEqualToValue={(option, value) => option.value === value.value}
+                onChange={(e, value) => {
+                    setFormData({...formData, address: {region: value}});
+                    dispatch(filterPosts({...formData, address: {region: value}}));
+                }}
+                value={formData.address.region}
+                options={regions}
+                renderInput={(params) =>
+                    <TextField
+                        value={formData.address.region}
+                        onChange={onChange}
+                        variant={'outlined'}
+                        name='region'
+                        {...params}
+                        label="Город"/>
                 }
             />
 

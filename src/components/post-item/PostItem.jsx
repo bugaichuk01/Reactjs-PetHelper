@@ -8,7 +8,7 @@ import useScreenSize from "../../_hooks/useScreenSize";
 import {Box} from "@material-ui/core";
 import checkStatus from "../../_utils/checkStatus";
 
-function PostItem({id, breed, name, status, eventDate, links, species}) {
+function PostItem({id, name, status, eventDate, links, species}) {
     const classes = useStyles();
     const drawerActivate = useScreenSize();
     return (
@@ -24,7 +24,7 @@ function PostItem({id, breed, name, status, eventDate, links, species}) {
                     </Box>
                     <img
                         src={links?.[2]?.href}
-                        alt={breed}
+                        alt={name}
                         loading="lazy"
                         className={drawerActivate ? classes.imageSmall : classes.image}
                     />

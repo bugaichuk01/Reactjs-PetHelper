@@ -7,6 +7,14 @@ const useStyles = makeStyles({
             flexDirection: 'column'
         }
     },
+    inputBox: {
+        "@media (min-width: 680px)": {
+            paddingRight: '10px',
+        },
+        marginBottom: '10px',
+        display: 'flex',
+        width: '100%'
+    },
     filterBox: {
         flexDirection: 'vertical',
         width: '450px',
@@ -26,6 +34,22 @@ const useStyles = makeStyles({
         "@media (max-width: 680px)": {
             maxWidth: '100%'
         }
+    },
+    button: {
+        backgroundColor: '#21ba45',
+        '&:hover': {
+            backgroundColor: '#21ba45'
+        },
+        height: '48px',
+        minHeight: '52px',
+        color: '#fff',
+        width: '10%',
+        border: 'none',
+        fontSize: '1rem',
+        fontWeight: 600,
+        marginTop: '10px',
+        marginLeft: '10px',
+        textTransform: 'none',
     },
 });
 

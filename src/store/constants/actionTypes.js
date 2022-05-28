@@ -9,7 +9,12 @@ export const POST_COMMENT = 'POST_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const FETCHING_COMMENTS = 'FETCHING_COMMENTS';
 
-//comment
+//posts
 export const FETCHING_POSTS = 'FETCHING_POSTS';
 export const GET_POSTS = 'GET_POSTS';
 export const FILTER_POSTS = 'FILTER_POSTS';
+export const SET_POSTS = 'SET_POSTS';
+
+
+
+
