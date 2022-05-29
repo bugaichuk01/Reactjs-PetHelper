@@ -3,11 +3,13 @@ import {makeStyles} from '@material-ui/styles';
 const useStyles = makeStyles({
     box: {
         display: 'flex',
+        flexDirection: 'column',
         "@media (max-width: 680px)": {
             flexDirection: 'column'
         }
     },
     inputBox: {
+        padding: '10px',
         "@media (min-width: 680px)": {
             paddingRight: '10px',
         },
@@ -16,15 +18,14 @@ const useStyles = makeStyles({
         width: '100%'
     },
     filterBox: {
+        display: 'flex',
+        justifyContent: 'space-between',
         flexDirection: 'vertical',
-        width: '450px',
         "@media (max-width: 680px)": {
             width: '100%'
         },
         "@media (min-width: 680px)": {
-            padding: '20px',
             marginBottom: '10px',
-            border: '1px solid rgba(0, 0, 0, 0.12)',
             borderRadius: '5px',
         }
     },

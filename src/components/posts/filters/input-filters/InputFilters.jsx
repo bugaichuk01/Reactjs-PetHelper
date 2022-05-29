@@ -24,6 +24,31 @@ function InputFilters({formData, setFormData, onChange}) {
         <React.Fragment>
 
             <Autocomplete
+                sx={{margin: '10px'}}
+                fullWidth
+                id="free-solo-demo"
+                isOptionEqualToValue={(option, value) => option.value === value.value}
+                onChange={(e, value) => {
+                    setFormData({...formData, status: value});
+                    dispatch(filterPosts({...formData, status: value}));
+                }}
+                value={formData.status}
+                options={mapItems(posts, 'status').map(item => item)}
+                renderInput={(params) =>
+                    <TextField
+                        value={formData.status}
+                        onChange={onChange}
+                        variant={'outlined'}
+                        name='status'
+                        {...params}
+                        label="Статус"/>
+                }
+            />
+
+
+            <Autocomplete
+                sx={{margin: '10px'}}
+                fullWidth
                 id="free-solo-demo"
                 isOptionEqualToValue={(option, value) => option.value === value.value}
                 onChange={(e, value) => {
@@ -44,6 +69,8 @@ function InputFilters({formData, setFormData, onChange}) {
             />
 
             <Autocomplete
+                sx={{margin: '10px'}}
+                fullWidth
                 id="free-solo-demo"
                 isOptionEqualToValue={(option, value) => option.value === value.value}
                 onChange={(e, value) => {
@@ -64,6 +91,8 @@ function InputFilters({formData, setFormData, onChange}) {
             />
 
             <Autocomplete
+                sx={{margin: '10px'}}
+                fullWidth
                 id="free-solo-demo"
                 isOptionEqualToValue={(option, value) => option.value === value.value}
                 onChange={(e, value) => {
@@ -84,6 +113,30 @@ function InputFilters({formData, setFormData, onChange}) {
             />
 
             <Autocomplete
+                sx={{margin: '10px'}}
+                fullWidth
+                id="free-solo-demo"
+                isOptionEqualToValue={(option, value) => option.value === value.value}
+                onChange={(e, value) => {
+                    setFormData({...formData, color: value});
+                    dispatch(filterPosts({...formData, color: value}));
+                }}
+                value={formData.color}
+                options={mapItems(posts, 'color').map(item => item)}
+                renderInput={(params) =>
+                    <TextField
+                        value={formData.color}
+                        onChange={onChange}
+                        variant={'outlined'}
+                        name='color'
+                        {...params}
+                        label="Цвет"/>
+                }
+            />
+
+            <Autocomplete
+                sx={{margin: '10px'}}
+                fullWidth
                 id="free-solo-demo"
                 isOptionEqualToValue={(option, value) => option.value === value.value}
                 onChange={(e, value) => {
@@ -104,6 +157,8 @@ function InputFilters({formData, setFormData, onChange}) {
             />
 
             <Autocomplete
+                sx={{margin: '10px'}}
+                fullWidth
                 id="free-solo-demo"
                 isOptionEqualToValue={(option, value) => option.value === value.value}
                 onChange={(e, value) => {
@@ -124,6 +179,8 @@ function InputFilters({formData, setFormData, onChange}) {
             />
 
             <Autocomplete
+                sx={{margin: '10px'}}
+                fullWidth
                 id="free-solo-demo"
                 isOptionEqualToValue={(option, value) => option.value === value.value}
                 onChange={(e, value) => {
@@ -134,6 +191,7 @@ function InputFilters({formData, setFormData, onChange}) {
                 options={mapItems(posts, 'castration').map(item => item)}
                 renderInput={(params) =>
                     <TextField
+                        fullWidth
                         value={formData.castration}
                         onChange={onChange}
                         variant={'outlined'}
@@ -144,6 +202,8 @@ function InputFilters({formData, setFormData, onChange}) {
             />
 
             <Autocomplete
+                sx={{margin: '10px'}}
+                fullWidth
                 id="free-solo-demo"
                 isOptionEqualToValue={(option, value) => option.value === value.value}
                 onChange={(e, value) => {
@@ -162,18 +222,6 @@ function InputFilters({formData, setFormData, onChange}) {
                         label="Состояние"/>
                 }
             />
-
-            <TextField
-                value={formData.name}
-                onChange={(e) => {
-                    setFormData({...formData, name: e.target.value});
-                    dispatch(filterPosts({...formData, name: e.target.value}));
-                }}
-                variant={'outlined'}
-                name='name'
-                label="Кличка"/>
-
-
         </React.Fragment>
     );
 }

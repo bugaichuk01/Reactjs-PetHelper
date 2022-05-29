@@ -9,7 +9,7 @@ import {useGeolocation} from "react-use";
 import useFormData from "../../_hooks/useFormData";
 import SimpleAlert from "../../components/alerts/SimpleAlert";
 import {Placemark} from "react-yandex-maps";
-import {Button} from "@mui/material";
+import {Button} from 'react-bootstrap';
 
 function Register() {
     const classes = useStyles();
@@ -58,20 +58,6 @@ function Register() {
     return (
         <Container maxWidth='sm'>
             <Box textAlign='center'>
-                <img
-                    className={classes.logo}
-                    src={require('../../images/logoRegistration.jpeg')}
-                    alt="Puppy logo"/>
-                <Typography
-                    className={classes.welcome}
-                    variant={"subtitle1"}>
-                    Добро пожалость в PetHelper!
-                </Typography>
-                <Typography
-                    className={classes.description}
-                    variant={"body2"}>
-                    Создание учетной записи
-                </Typography>
                 {
                     status && status === 'ACTIVE'
                         ? (
@@ -86,40 +72,10 @@ function Register() {
                         : (
                             <React.Fragment>
                                 <form onSubmit={onSubmit}>
-                                    <TextField
-                                        fullWidth
-                                        required
-                                        variant='outlined'
-                                        label='Ваше имя'
-                                        name='name'
-                                        onChange={onChange}
-                                    />
-                                    <TextField
-                                        fullWidth
-                                        required
-                                        error={!!dataError}
-                                        variant='outlined'
-                                        label='Ваш username'
-                                        name='username'
-                                        onChange={onChange}
-                                    />
-                                    <TextField
-                                        fullWidth
-                                        required
-                                        error={!!dataError}
-                                        variant='outlined'
-                                        label='Ваш Email'
-                                        name='email'
-                                        onChange={onChange}
-                                    />
-                                    <TextField
-                                        fullWidth
-                                        required
-                                        variant='outlined'
-                                        label='Ваш номер'
-                                        name='mobileNumber'
-                                        onChange={onChange}
-                                    />
+                                    <input onChange={onChange} type="text" required className={'form-control'} placeholder={'Имя'} name='name'/>
+                                    <input onChange={onChange} type="text" required className={'form-control mt-2'} placeholder={'Username'} name='username'/>
+                                    <input onChange={onChange} type="email" required className={'form-control mt-2'} placeholder={'Email'} name='email'/>
+                                    <input onChange={onChange} type="text" required className={'form-control mt-2'} placeholder={'Номер телефона'} name='mobileNumber'/>
 
                                     <AddressInput address={formData.address} setFormData={setFormData} formData={formData}
                                                   coordinates={coordinates} setCoordinates={setCoordinates}/>

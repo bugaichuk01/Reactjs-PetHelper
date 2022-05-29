@@ -9,7 +9,7 @@ import {Link} from "react-router-dom";
 import useStyles from './AuthStyles';
 import useFormData from "../../_hooks/useFormData";
 import SimpleAlert from "../../components/alerts/SimpleAlert";
-import {Button} from "@mui/material";
+import {Button} from 'react-bootstrap';
 
 const Login = () => {
     const classes = useStyles();
@@ -28,40 +28,9 @@ const Login = () => {
     return (
         <Container maxWidth='sm'>
             <Box textAlign={'center'}>
-                <img
-                    className={classes.logo}
-                    src={require('../../images/logoLogin.png')}
-                    alt="Puppy logo"/>
-                <Typography
-                    className={classes.welcome}
-                    variant={"subtitle1"}>
-                    PetHelper
-                </Typography>
-                <Typography
-                    className={classes.description}
-                    variant={"body2"}>
-                    Войдите, чтобы продолжить
-                </Typography>
                 <form onSubmit={onSubmit}>
-                    <TextField
-                        fullWidth
-                        required
-                        error={!!error}
-                        variant='outlined'
-                        label='Username'
-                        name='username'
-                        onChange={onChange}
-                    />
-                    <TextField
-                        fullWidth
-                        required
-                        error={!!error}
-                        variant='outlined'
-                        label='Пароль'
-                        name='password'
-                        type='password'
-                        onChange={onChange}
-                    />
+                    <input onChange={onChange} type="text" required className={'form-control'} placeholder={'Username'} name='username'/>
+                    <input onChange={onChange} type="password" required className={'form-control mt-2'} placeholder={'Пароль'} name='password'/>
 
                     {
                         error &&
@@ -73,22 +42,16 @@ const Login = () => {
                         />
                     }
 
-                    <Button
-                        fullWidth
-                        variant="contained"
-                        className={classes.button}
-                        type='submit'
-                    >
+                    <Button className={'btn btn-primary w-100 mt-2'} type='submit'>
                         Войти
                     </Button>
                 </form>
-                <Divider className={classes.divider}/>
-                <Typography className={classes.links} variant='body2'>
-                    <Link className={classes.link} to='/forgetPass'>Забыли пароль?</Link>
-                </Typography>
-                <Typography className={classes.links} variant='body2'>Не зарегестрированы в системе?
-                    <Link className={classes.link} to='/register'> Регистрация</Link>
-                </Typography>
+                <p className={'mt-4'}>
+                    <Link to='/forgetPass'>Забыли пароль?</Link>
+                </p>
+                <p>Еще не зарегистрированы ?
+                    <Link to='/register'> Регистрация</Link>
+                </p>
             </Box>
         </Container>
     );

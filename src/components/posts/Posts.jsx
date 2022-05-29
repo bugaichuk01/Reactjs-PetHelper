@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Box, Button, ImageList, Pagination, Stack, Typography} from "@mui/material";
+import {Box, ImageList, Pagination, Stack, Typography} from "@mui/material";
 import PostItem from "../post-item/PostItem";
 import useScreenSize from "../../_hooks/useScreenSize";
 import PostsMap from "./posts-map/PostsMap";
@@ -9,8 +9,7 @@ import {getPosts, setPosts} from "../../store/actions/posts";
 import _ from "lodash";
 import useStyles from "./PostsStyles";
 import {TextField} from "@material-ui/core";
-import axios from "axios";
-import authHeader from "../../_services/auth-header";
+import {Button} from 'react-bootstrap';
 import postService from "../../_services/post.service";
 
 
@@ -62,12 +61,12 @@ function Posts({items, children}) {
                         fullWidth
                         variant='outlined'
                         value={elasticValue}
-                        label='Введите ключевые слова для поиска...'
+                        label='Поиск...'
                         onChange={onChange}
                         name='text'
                     />
-                    <Button type={'submit'} className={classes.button} variant={'contained'}>
-                        Найти
+                    <Button className={'btn btn-primary w-25 ml-5 mt-2'} type='submit'>
+                        Поиск
                     </Button>
                 </Box>
             </form>

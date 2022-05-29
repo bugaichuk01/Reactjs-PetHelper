@@ -21,10 +21,7 @@ function Filters({setDisplay, display}) {
     return (
         <React.Fragment>
             <Box className={classes.filterBox}>
-                <Display setDisplay={setDisplay} display={display}/>
-                <Divider sx={{marginTop: '10px'}} />
-                <StatusControls formData={formData} setFormData={setFormData} />
-                <Divider />
+                {/*<Display setDisplay={setDisplay} display={display}/>*/}
                 <InputFilters formData={formData} setFormData={setFormData} onChange={onChange} />
             </Box>
         </React.Fragment>
