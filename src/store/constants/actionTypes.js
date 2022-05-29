@@ -15,6 +15,9 @@ export const GET_POSTS = 'GET_POSTS';
 export const FILTER_POSTS = 'FILTER_POSTS';
 export const SET_POSTS = 'SET_POSTS';
 
-
+//favourites
+export const GET_FAVOURITES = 'GET_FAVOURITES';
+export const ADD_FAVOURITES = 'ADD_FAVOURITES';
+export const DELETE_FAVOURITES = 'DELETE_FAVOURITES';
 
 

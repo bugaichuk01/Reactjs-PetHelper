@@ -18,6 +18,7 @@ import React from "react";
 import ForgetPassword from "./pages/auth/ForgetPassword";
 import ChangePassword from "./pages/auth/ChangePassword";
 import MyPosts from "./pages/my-posts/MyPosts";
+import Favourites from "./pages/favs/Favourites";
 
 function App() {
     const {user} = useSelector(state => state.userReducer);
@@ -45,6 +46,7 @@ function App() {
                 <Route path="/profile/edit" element={user ? <ProfileEdit/> : <Navigate replace to='/'/>}/>
                 <Route path="/profile/myPosts" element={user ? <MyPosts/> : <Navigate replace to='/'/>}/>
                 <Route path="/admin-panel" element={user?.role === 'ADMIN' && <AdminPanel/>}/>
+                <Route path="/profile/favourites" element={user ? <Favourites /> :<Navigate replace to='/'/> }/>
             </Routes>
         </React.Fragment>
     );

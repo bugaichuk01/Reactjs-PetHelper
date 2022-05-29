@@ -28,6 +28,7 @@ function Profile() {
                     <ProfileCard
                         text={'Просмотр списка сохраненных отчетов'}
                         icon={<BookmarkIcon color={'disabled'} fontSize={'large'}/>}
+                        link={'/profile/favourites'}
                     />
                 </Box>
             </Container>

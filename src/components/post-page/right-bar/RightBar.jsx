@@ -1,5 +1,5 @@
 import React from 'react';
-import {Avatar, Box, Container, Divider, Typography} from "@mui/material";
+import {Avatar, Box, Button, Container, Divider, Typography} from "@mui/material";
 import YMap from "../../ymap/YMap"
 import isMyItem from "../../../_utils/isMyItem";
 import DeletePost from "../../button/delete-post/DeletePost";
@@ -14,6 +14,7 @@ function RightBar({classes, currentPost, coordinates}) {
     
     return (
         <Box sx={{display: 'flex', flexDirection: 'column', width: '24%'}}>
+
             <Container className={classes.rightBar}>
                 <Typography className={classes.mapText} variant={'subtitle1'}>
                     Контакты
@@ -62,12 +63,15 @@ function RightBar({classes, currentPost, coordinates}) {
                     <Typography className={classes.mapPosition}
                                 textAlign={'center'}>{currentPost?.address?.address}</Typography>
                 </Box>
-                {/*            {
+
+
+            </Container>
+
+{/*            {
                 isMyItem(currentPost) && (
                     <DeletePost currentPost={currentPost}/>
                 )
             }*/}
-            </Container>
         </Box>
     );
 }
