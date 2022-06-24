@@ -67,4 +67,5 @@
     └───_utils
 ```
 
-![Uploading image.png…]()
+![Снимок](https://user-images.githubusercontent.com/90038064/175491083-82d9d037-9ad5-41a2-8300-0e818b51cc61.PNG)
+
